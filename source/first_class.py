@@ -7,7 +7,7 @@ a = 0
 b = -5
 
 # Define the 8 vertices of the cube
-vertices = np.array([\
+vertices2 = np.array([\
     [3,0,0],
     [4,1,0],
     [2,1,0],
@@ -22,10 +22,17 @@ vertices = np.array([\
     [0,3,0],
     [3,4,0],
 ])
+
+vertices = np.array([\
+    [0, 0, 0],
+    [2, 0, 0],
+    [0, 2, 0],
+    [2, 2, 2]
+])
 # Define the 12 triangles composing the cube
 c = 0
 
-faces = np.array([\
+faces2 = np.array([\
     [0, 1, 2],
     [1, 2, 3],
     [2, 3, 6],
@@ -40,6 +47,12 @@ faces = np.array([\
     [9, 10, 12],
 ])
 
+faces = np.array([\
+    [0, 1, 2],
+    [1, 2, 3],
+    [2, 3, 0],
+    [0, 1, 3]
+])
 #faces2 = np.array([\
  #   [0 1 ]])
 # Create the mesh
