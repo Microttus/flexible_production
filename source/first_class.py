@@ -54,7 +54,7 @@ faces = np.array([\
     [0, 1, 3]
 ])
 #faces2 = np.array([\
- #   [0 1 ]])
+#   [0 1 ]])
 # Create the mesh
 cube = mesh.Mesh(np.zeros(faces.shape[0], dtype=mesh.Mesh.dtype))
 for i, f in enumerate(faces):
