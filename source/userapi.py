@@ -57,6 +57,7 @@ class UserApi:
         self.myApi.message_display("Fetching temperature data", 50, 500, 300, cl.black)
 
         self.myApi.update_screen()
+        return True
 
     def generatingPMS(self):
         self.myApi.message_display("Generating mesh", 50, 500, 300, cl.black)
@@ -64,5 +65,5 @@ class UserApi:
 
         self.myApi.update_screen()
 
-    def returnLists(self):
+    def getList(self):
         return self.specificationList

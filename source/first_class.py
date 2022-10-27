@@ -66,3 +66,12 @@ print(enumerate(faces))
 # Write the mesh to file "cube.stl"
 cube.save('cube.stl')
 print(len(cube.vectors))
+
+
+class testClass:
+
+    def retriveList(self, specList):
+        listen = specList.getList()
+        print(listen)
+        return 0
+    
