@@ -39,4 +39,5 @@ class PointGenerator:
           #self.generatingInnerCircle(specification[])
     ###
      ##TEST
+    ## TEST 3
 
