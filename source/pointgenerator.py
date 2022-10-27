@@ -37,4 +37,6 @@ class PointGenerator:
           # [innerDiameter, nuberOfTeeth, printTemperature, teethheight, locationLong, locationLat, locationTemp]
             specificationList = [10, 20, 0, 2, 0, 0, 0]
           #self.generatingInnerCircle(specification[])
+    ###
+     ##TEST
 
