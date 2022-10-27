@@ -18,7 +18,6 @@ class UserApi:
         self.myApi = api.ApiLibrary()
 
     def userInput(self):
-
         self.myApi.message_display("Gear Generator v0.1", 70, 300, 40, cl.black)
 
         self.myApi.message_display("Inner diameter [d]:", 30, 80, 200, cl.black)
@@ -65,3 +64,5 @@ class UserApi:
 
         self.myApi.update_screen()
 
+    def returnLists(self):
+        return self.specificationList

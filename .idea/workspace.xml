@@ -39,7 +39,7 @@
       <recent name="C:\Users\marti\Documents\UiA\4.aar_Master\MAS417\flexible_production\source" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.martin">
+  <component name="RunManager" selected="Python.userapi">
     <configuration name="api_test" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="flexible_production" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -132,8 +132,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.martin" />
         <item itemvalue="Python.userapi" />
+        <item itemvalue="Python.martin" />
         <item itemvalue="Python.api_test" />
       </list>
     </recent_temporary>

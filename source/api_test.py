@@ -4,6 +4,7 @@ APIWether class
 Martin Økter
 25.10.2022
 '''
+
 import requests
 
 # Insert your own client ID here

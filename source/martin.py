@@ -19,7 +19,7 @@ while True:
     while action:
         action = uApi.userInput()
 
-    action = True
+    action = Truehi
     while action:
         action = uApi.fetchingTemperature()
 
