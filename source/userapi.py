@@ -14,6 +14,7 @@ class UserApi:
     def __init__(self):
         # [innerDiameter, nuberOfTeeth, printTemperature, teethheight, locationLong, locationLat, locationTemp]
         self.specificationList = [0, 0, 0, 0, 0, 0, 0]
+        self._locationTemp = 20
 
         self.myApi = api.ApiLibrary()
 
@@ -44,26 +45,37 @@ class UserApi:
 
         if action:
             self.updateValues()
-            return False
+            return True
 
-        return True
+        return False
 
 
     def updateValues(self):
         self.specificationList = self.myApi.returnLists()
-        print(self.specificationList)
+        return 0
 
     def fetchingTemperature(self):
-        self.myApi.message_display("Fetching temperature data", 50, 500, 300, cl.black)
+        self.myApi.message_display("Fetching temperature data", 40, 350, 200, cl.black)
+        self.myApi.message_display("and generating point cloud", 40, 350, 300, cl.black)
 
         self.myApi.update_screen()
+
+        # Point generating here
+        # Return True when finished!
+
         return True
 
     def generatingPMS(self):
-        self.myApi.message_display("Generating mesh", 50, 500, 300, cl.black)
-        self.myApi.message_display("Mean temperature last year at your location was {} degrees celsius".format(self._locationTemp), 30, 400, 400, cl.grey)
+        self.myApi.message_display("Generating mesh", 50, 350, 300, cl.black)
+        self.myApi.message_display("Mean temperature last year at your location", 30, 350, 400, cl.grey)
+        self.myApi.message_display("was {} degrees celsius".format(self._locationTemp), 30, 350, 450, cl.grey)
 
         self.myApi.update_screen()
+
+        return False
+
+    def outputPage(self):
+
 
     def getList(self):
         return self.specificationList
