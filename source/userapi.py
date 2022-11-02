@@ -75,7 +75,11 @@ class UserApi:
         return False
 
     def outputPage(self):
+        self.myApi.message_display("Your gear are ready!", 50, 350, 300, cl.black)
 
+        self.myApi.update_screen()
+
+        return False
 
     def getList(self):
         return self.specificationList

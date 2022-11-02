@@ -25,11 +25,15 @@ class GearGenerator:
 
     def meshFase(self):
         action = uApi.generatingPMS()
+        action = True
         if action:
             self.next += 1
         return 0
 
     def outputFase(self):
+        action = uApi.outputPage()
+        if action:
+            self.next = 0
         return 0
 
     def pointFase(self):
@@ -46,6 +50,4 @@ class GearGenerator:
         elif self.next == 2:
             self.meshFase()
         elif self.next == 3:
-            self.stlFase()
-        elif self.next == 4:
             self.outputFase()
