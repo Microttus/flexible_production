@@ -9,8 +9,8 @@ pg = klassertorbjorn.PointGenerator()
 
 #---Main flow---
 def main():
-#    plotnodes()
-    meshgears()
+    plotnodes()
+#    meshgears()
 #---Functions---
 def plotnodes():
     nd.setNbElements(20)

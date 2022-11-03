@@ -47,9 +47,9 @@ class PointGenerator:
         self.mainNodes = []
         self.innerPoints = []
         self.innerNodes = []
-        self.tri = []  # not sure what tri is
-
-
+        self.triA = []  # not sure what tri is
+        self.triB = []
+        self.test = []
     def giveValues(self,cirkInner, cirkOuter, teethHeiht, numberOfTeeth):
         self.cirkInner = cirkInner
         self.cirkOuter = cirkOuter
@@ -66,6 +66,7 @@ class PointGenerator:
         self.innerNodes = list(zip(self.xInner, self.yInner))
         self.innerPoints = np.array(self.innerNodes)
 
+
     def generatingMainCircle(self):
          # make a simple unit circle
         self.xMain, self.yMain = self.cirkMain/2 * np.cos(self.theta), self.cirkMain/2 * np.sin(self.theta) #x,y are coordinates for the inner cirkle
@@ -79,9 +80,12 @@ class PointGenerator:
         self.outerpoints = np.array(self.outerNodes)
 
 
-        #self.tri = Delaunay(self.points)
-        print(self.outerpoints)
-        #plt.triplot(self.points[:,0], self.points[:,1], self.tri.simplices)
+        self.test = list(zip(self.outerpoints,self.mainPoints))
+        self.test = np.array(self.test)
+        #self.triA = Delaunay(self.test)
+
+        print(self.test)
+       # plt.triplot(self.test[:, 0], self.test[:, 1], self.triA.simplices)
         #plt.plot(self.points[:, 0], self.points[:, 1], 'o')
         #plt.show()
 
