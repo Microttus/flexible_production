@@ -40,35 +40,42 @@ class PointGenerator:
         self.xInner, self.yInner = self.cirkInner/2 * np.cos(self.theta), self.cirkInner/2 * np.sin(self.theta) #x,y are coordinates for the inner cirkle
         self.zInner = np.zeros(int(self.numberOfTeeth))
         self.pointsInner = [self.xInner, self.yInner, self.zInner]
-        return self.pointsInner
+        self.pointsInner = [value*self.multiplyingFactor for value in self.pointsInner] #Multiplies list by the sizing factor
+
     def generatingMainCircle(self):
          # make a simple unit circle
         self.xMain, self.yMain = self.cirkMain/2 * np.cos(self.theta), self.cirkMain/2 * np.sin(self.theta) #x,y are coordinates for the inner cirkle
         self.zMain = np.zeros(int(self.numberOfTeeth))
         self.pointsMain = [self.xMain, self.yMain, self.zMain]
-        return self.pointsMain
+        self.pointsMain = [value*self.multiplyingFactor for value in self.pointsMain] #Multiplies list by the sizing factor
+
+
     def generatingOuterCircle(self):
         # make a simple unit circle shiftet one halv tooth
         self.xOuter, self.yOuter = self.cirkOuter/2 * np.cos(self.thetaShifted), self.cirkOuter/2 * np.sin(self.thetaShifted) #x,y are coordinates for the inner cirkle
         self.zOuter = np.zeros(int(self.numberOfTeeth))
         self.pointsOuter = [self.xOuter, self.yOuter, self.zOuter]
-        return self.pointsOuter
+        self.pointsOuter = [value*self.multiplyingFactor for value in self.pointsOuter] #Multiplies list by the sizing factor
+
     def offsetPoints(self):
         #makes the offset plane to give the gear a thickness
         self.xInnerOffset = self.xInner
         self.yInnerOffset = self.yInner
         self.zInnerOffset = self.zInner + self.gearHeight
         self.pointsInnerOffset = [self.xInnerOffset, self.yInnerOffset, self.zInnerOffset]
+        self.pointsInnerOffset = [value*self.multiplyingFactor for value in self.pointsInnerOffset] #Multiplies list by the sizing factor
 
         self.xMainOffset = self.xMain
         self.yMainOffset  = self.yMain
         self.zMainOffset  = self.zMain + self.gearHeight
         self.pointsMainOffset = [self.xMainOffset, self.yMainOffset, self.zMainOffset]
+        self.pointsMainOffset = [value*self.multiplyingFactor for value in self.pointsMainOffset]
 
         self.xOuterOffset = self.xOuter
         self.yOuterOffset = self.yOuter
         self.zOuterOffset = self.zOuter + self.gearHeight
         self.pointsOuterOffset = [self.xOuterOffset, self.yOuterOffset, self.zOuterOffset]
+        self.pointsOuterOffset = [value*self.multiplyingFactor for value in self.pointsOuterOffset] #Multiplies list by the sizing factor
 
     def temperatureSizing(self):
 
@@ -94,9 +101,11 @@ class PointGenerator:
         self.meanTemp = self.temp_data[0]['observations'][0]['value']
         #print(self.meanTemp)
 
-        self.degDiff = self.printTemp - self.meanTemp
-        #self.sizeConstant = self.degDiff
-        # https://llplastic.co.uk/llplastic-information plastic expantion coefficient 0.11 mm/m/C
+        #Change the size of the gear:
+        degDiff = self.printTemp - self.meanTemp
+        sizeCoef = 0.11 # https://llplastic.co.uk/llplastic-information plastic expantion coefficient 0.11 mm/m/C
+        self.multiplyingFactor = 1 + sizeCoef/1000* degDiff #Prosent change after temperetur added
+
 
 
 
@@ -129,7 +138,7 @@ class PointGenerator:
         :return:
         Returns the list of the Outer circle. x = getPointsOuterOffset[0], y = getPointsOuterOffset[1], z = getPointsOuterOffset[2]
         """
-        return self.pointsMain
+        return self.pointsOuter
     def getPointsInnerOffset(self):
         """
         Description
@@ -152,7 +161,7 @@ class PointGenerator:
         :return:
         Returns the list of the Outer circle with ofset. x = getPointsOuterOffset[0], y = getPointsOuterOffset[1], z = getPointsOuterOffset[2]
         """
-        return self.pointsMainOffset
+        return self.pointsOuterOffset
 
 
 

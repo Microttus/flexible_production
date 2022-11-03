@@ -26,9 +26,9 @@ plt.show()
 print(ring.meanTemp)
 
 
-# TO DO: Correct API to find mean. Not sure about the dates and the mean value
+# TO DO Per Henrik:
+# # Correct API to find mean. Not sure about the dates and the mean value
 # # Calculate and correct the size of the gear!
-# # Point generator to speak with api and run from there
-# # Return points to lists??
 # # Help with the mesh?
+# # Update class diagram because API is a function inside PointGeneratir
 
