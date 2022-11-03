@@ -104,9 +104,16 @@ class PointGenerator:
         #Change the size of the gear:
         degDiff = self.printTemp - self.meanTemp
         sizeCoef = 0.11 # https://llplastic.co.uk/llplastic-information plastic expantion coefficient 0.11 mm/m/C
-        self.multiplyingFactor = 1 + sizeCoef/1000* degDiff #Prosent change after temperetur added
+        self.prosChange = sizeCoef/1000* degDiff*100 #Prosent change after temperetur added
+        self.multiplyingFactor = 1 + self.prosChange
 
 
+
+    def returnSizeChangeProsent(self):
+        """
+        :return: Change in prosent with 1 desimal, due to temperature.
+        """
+        return (round(self.prosChange,1))
 
 
 

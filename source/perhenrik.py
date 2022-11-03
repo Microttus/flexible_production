@@ -7,7 +7,7 @@ Per Henrik Hardeberg
 
 # TO DO Per Henrik:
 # # Correct API to find mean. Not sure about the dates and the mean value
-# # Calculate and correct the size of the gear! Think this is OK
+# # Calculate and correct the size of the gear! Think this is OK. The size is returned in prosent. Needs to be printed.
 # # Help with the mesh?
-# # Update class diagram because API is a function inside PointGeneratir
+# # Update class diagram because API is a function inside PointGeneratic
 
