@@ -12,3 +12,5 @@ gg = geargenerator.GearGenerator()
 
 while True:
     gg.mainLoop()
+
+
