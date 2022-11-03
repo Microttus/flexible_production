@@ -15,8 +15,13 @@ client_id = 'd5398c91-5891-4c26-b199-990eebd37174'
 endpoint = 'https://frost.met.no/observations/v0.jsonld'
 geoendpoint = 'https://frost.met.no/sources/v0.jsonld'
 
+Lat = 8.3540  #Input from User interface, Need some restrictions
+Long = 58.2250   #Input from User interface, Need some restrictions
+
+#POINT(8.3540 58.2250)
+
 geoparameters = {
-    'geometry': 'nearest(POINT(8.3540 58.2250))'
+    'geometry': f'nearest(POINT({Lat} {Long}))'
 }
 
 # Issue an HTTP GET request
@@ -51,3 +56,4 @@ else:
 
 
 print(temp_data[0]['observations'][0]['value'])
+
