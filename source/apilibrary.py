@@ -31,8 +31,9 @@ class ApiLibrary:
         self.text_for_print = [[]]
         self.specification = []
 
-        self.gearDisc = pygame.image.load('Images/MS_logo_symbol_fill_white.png')
-        self.gearDisc = pygame.transform.scale(self.gearDisc,(200,200))
+        self.gearDisc = pygame.image.load('Images/gearIlu.jpg')
+        self.gearDisc = pygame.transform.scale(self.gearDisc,(400,400))
+        self.gearSmall = pygame.transform.scale(self.gearDisc, (160, 160))
 
 
     def update_screen(self):
@@ -60,8 +61,19 @@ class ApiLibrary:
         TextRect = (x, y)
         self.gameDisplay.blit(l_Text, TextRect)
 
-    def img_show(self, x, y, img_name):
-        self.gameDisplay.blit(self.gearDisc,(x,y))
+    def message_display_center(self, text, size, x, y, color=(0, 0, 0)):
+        largeText = pygame.font.SysFont('calibri', size)
+        l_Text = largeText.render(str(text), 1, color)
+        TextRect = l_Text.get_rect()
+        TextRect.center = (x, y)
+        self.gameDisplay.blit(l_Text, TextRect)
+
+    def img_show(self, x, y, img_ind):
+        if img_ind == 1:
+            self.gameDisplay.blit(self.gearDisc, (x, y))
+        elif img_ind == 2:
+            self.gameDisplay.blit(self.gearSmall, (x, y))
+        return 0
 
     def button(self, msg, x, y, width, height, inactive, active, action=None, non_action=None):
         mouse = pygame.mouse.get_pos()
@@ -79,7 +91,7 @@ class ApiLibrary:
         return non_action
 
     def text_box(self, x_place, y_place, width, height, active, inactive, size=30, text_index=0):
-        if len(self.text_for_print) < text_index+1:
+        if len(self.text_for_print) < text_index+2:
             self.text_for_print.append([])
             self.specification.append(0)
 

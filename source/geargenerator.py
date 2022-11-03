@@ -15,6 +15,7 @@ class GearGenerator:
     def __init__(self):
         self.next = 0
         self.spesificationList = []
+        self.temp = 0
 
     def inputFase(self):
         action = uApi.userInput()
@@ -24,8 +25,12 @@ class GearGenerator:
         return 0
 
     def meshFase(self):
-        action = uApi.generatingPMS()
+        action = uApi.generatingPMS(self.temp)
         action = True
+
+        # Sett inn meshing her
+        # Torbjørn
+
         if action:
             self.next += 1
         return 0
@@ -37,7 +42,12 @@ class GearGenerator:
         return 0
 
     def pointFase(self):
-        action = uApi.fetchingTemperature()
+        uApi.fetchingTemperature()
+        action = True
+
+        # Sett inn point genrating her
+        # Per
+
         if action:
             self.next += 1
         return 0
