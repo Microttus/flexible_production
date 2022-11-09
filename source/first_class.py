@@ -2,6 +2,11 @@
 
 import numpy as np
 from stl import mesh
+import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D, art3d
+import pointgenerator as pg
+
+
 
 a = 0
 b = -5
@@ -74,4 +79,3 @@ class testClass:
         listen = specList.getList()
         print(listen)
         return 0
-    

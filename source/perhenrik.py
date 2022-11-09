@@ -11,3 +11,34 @@ Per Henrik Hardeberg
 # # Help with the mesh?
 # # Update class diagram because API is a function inside PointGeneratic
 
+
+import numpy as np
+import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D, art3d
+import pointgenerator as pg
+dummyList = [5, 20, 3,  3,20, 200,8.3540, 58.2250]
+        # [innerDiameter, outerDiameter, teethheight,gearheight, nuberOfTeeth, printTemperature [C],  locationLat, locationLong]
+pGen = pg.PointGenerator(dummyList) #Her oprettes objektet, bytt til spesification list når den skal testes skikkelig.
+pointsInner = pGen.getPointsInner()
+pointsMain = pGen.getPointsMain()
+pointsOuter =  pGen.getPointsOuter()
+pointsInnerOffset = pGen.getPointsInnerOffset()
+pointsMainOffset = pGen.getPointsMainOffset()
+pointsOuterOffset =  pGen.getPointsOuterOffset()
+
+v = np.array([[0,0,0], [1,0,0], [1,1,0], [0,1,0],
+              [0,0,1], [1,0,1], [1,1,1], [0,1,1]])
+
+#v = np.array([pointsInner, pointsMain])
+
+f = np.array([[0,6,1], [1,2,3]])
+
+
+
+
+
+fig = plt.figure()
+ax = fig.add_subplot(projection="3d")
+pc = art3d.Poly3DCollection(v[f],  edgecolor="black")
+ax.add_collection(pc)
+plt.show()
