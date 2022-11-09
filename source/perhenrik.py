@@ -16,7 +16,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D, art3d
 import pointgenerator as pg
-dummyList = [5, 20, 3,  3,20, 200,8.3540, 58.2250]
+dummyList = [0.2, 0.5, 0.1,  0.1,20, 200,8.3540, 58.2250]
         # [innerDiameter, outerDiameter, teethheight,gearheight, nuberOfTeeth, printTemperature [C],  locationLat, locationLong]
 pGen = pg.PointGenerator(dummyList) #Her oprettes objektet, bytt til spesification list når den skal testes skikkelig.
 pointsInner = pGen.getPointsInner()
@@ -26,15 +26,20 @@ pointsInnerOffset = pGen.getPointsInnerOffset()
 pointsMainOffset = pGen.getPointsMainOffset()
 pointsOuterOffset =  pGen.getPointsOuterOffset()
 
-v = np.array([[0,0,0], [1,0,0], [1,1,0], [0,1,0],
-              [0,0,1], [1,0,1], [1,1,1], [0,1,1]])
+#v = np.array([[0,0,0], [1,0,0], [1,1,0], [0,1,0],
+ #             [0,0,1], [1,0,1], [1,1,1], [0,1,1]])
 
 #v = np.array([pointsInner, pointsMain])
 
-f = np.array([[0,6,1], [1,2,3]])
+#f = np.array([[0,6,1], [1,2,3]])
 
+v = np.vstack((pointsInner, pointsMain))
+f = []
+for i  in range(0, len(pointsInner)):
+    var =  np.array([i,i+1,i + len(pointsInner)])
+    f.append(var)
 
-
+print(f[1])
 
 
 fig = plt.figure()

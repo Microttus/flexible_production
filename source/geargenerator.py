@@ -66,7 +66,7 @@ class GearGenerator:
     def pointFase(self):
         uApi.fetchingTemperature()
         action = True
-        dummyList = [5, 20, 3,  3,20, 200,8.3540, 58.2250]
+        dummyList = [0.5, 1, 0.1,  0.1, 20, 200,8.3540, 58.2250]
         # [innerDiameter, outerDiameter, teethheight,gearheight, nuberOfTeeth, printTemperature [C],  locationLat, locationLong]
         self.pGen = pg.PointGenerator(dummyList) #Her oprettes objektet, bytt til spesification list når den skal testes skikkelig.
         self.temp = self.pGen.returnTemp()
