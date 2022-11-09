@@ -33,13 +33,16 @@ pointsOuterOffset =  pGen.getPointsOuterOffset()
 
 #f = np.array([[0,6,1], [1,2,3]])
 
-v = np.vstack((pointsInner, pointsMain))
+v = np.vstack((pointsInner, pointsMain, pointsOuter))
 f = []
-for i  in range(0, len(pointsInner)):
-    var =  np.array([i,i+1,i + len(pointsInner)])
+for i  in range(1, len(pointsInner)):
+    var =  np.array([i-1,i,i-1 + len(pointsInner)])
+    var2 = np.array([i-1+len(pointsInner),i+len(pointsInner),i])
+    var3 = np.array([i-1+len(pointsInner),i+len(pointsInner),i-1+2*len(pointsInner)])
     f.append(var)
+    f.append(var2)
+    f.append(var3)
 
-print(f[1])
 
 
 fig = plt.figure()
