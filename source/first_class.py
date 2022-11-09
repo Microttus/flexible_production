@@ -67,7 +67,7 @@ for i, f in enumerate(faces):
         cube.vectors[i][j] = vertices[f[j],:]
 
 print(enumerate(faces))
-
+print(faces)
 # Write the mesh to file "cube.stl"
 cube.save('cube.stl')
 print(len(cube.vectors))

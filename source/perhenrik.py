@@ -16,7 +16,10 @@ import numpy as np
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D, art3d
 import pointgenerator as pg
-dummyList = [0.2, 0.5, 0.1,  0.1,20, 200,8.3540, 58.2250]
+from stl import mesh
+
+
+dummyList = [0.1, 0.6, 0.05,  0.05,25, 200,8.3540, 58.2250]
         # [innerDiameter, outerDiameter, teethheight,gearheight, nuberOfTeeth, printTemperature [C],  locationLat, locationLong]
 pGen = pg.PointGenerator(dummyList) #Her oprettes objektet, bytt til spesification list når den skal testes skikkelig.
 pointsInner = pGen.getPointsInner()
@@ -68,9 +71,23 @@ for i  in range(1, length):
 
 
 
-
 fig = plt.figure()
 ax = fig.add_subplot(projection="3d")
 pc = art3d.Poly3DCollection(v[f],  edgecolor="black")
 ax.add_collection(pc)
 plt.show()
+
+f = np.vstack(f)  # To get the faces to mach the array expected and not array of array
+print(f)
+
+gear = mesh.Mesh(np.zeros(f.shape[0], dtype=mesh.Mesh.dtype))
+for i, f in enumerate(f):
+    for j in range(3):
+        gear.vectors[i][j] = v[f[j],:]
+
+print(enumerate(f))
+
+ #Write the mesh to file "cube.stl"
+gear.save('gear.stl')
+print(len(gear.vectors))
+
