@@ -33,15 +33,34 @@ pointsOuterOffset =  pGen.getPointsOuterOffset()
 
 #f = np.array([[0,6,1], [1,2,3]])
 
-v = np.vstack((pointsInner, pointsMain, pointsOuter))
+
+
+v = np.vstack((pointsInner, pointsMain, pointsOuter,pointsInnerOffset,pointsMainOffset, pointsOuterOffset))
 f = []
-for i  in range(1, len(pointsInner)):
-    var =  np.array([i-1,i,i-1 + len(pointsInner)])
-    var2 = np.array([i-1+len(pointsInner),i+len(pointsInner),i])
-    var3 = np.array([i-1+len(pointsInner),i+len(pointsInner),i-1+2*len(pointsInner)])
+length = len(pointsInner)
+for i  in range(1, length):
+    var =  np.array([i-1,i,i-1 + length]) # inner lower circle, inn to out triangles
+    var2 = np.array([i-1+length,i+length,i]) # mid lower, out to inn triangles. Completes lower inner circle
+    var3 = np.array([i-1+length,i+length,i-1+2*length]) # teeth lower
+    var4 = np.array([i-1,i,i-1+3*length]) # inner to inner, trangle from lower to higher
+    var5 = np.array([i-1+3*length,i+3*length,i]) # inner to inner, trangle from higher to lower
+    var6 = np.array([i-1+4*length,i+4*length,i-1+3*length]) # from main to inner top plane
+    var7 = np.array([i-1+3*length,i+3*length,i+4*length]) # inner to main top plane
+    var8 = np.array([i-1+4*length,i+4*length,i-1+5*length]) # teeth top plane
+
+
+    #var6 = np.array([i-1+4*length,i+4*length,i+length]) #from main to main. Too to bottom NOT NESSESERY, but points
+    #var7 = np.array([i-1+length,i+length,i-1+4*length]) # main to main. Bottom to top. NOT NESSESERY, but points
+
     f.append(var)
     f.append(var2)
     f.append(var3)
+    f.append(var4)
+    f.append(var5)
+    f.append(var6)
+    f.append(var7)
+    f.append(var8)
+
 
 
 
