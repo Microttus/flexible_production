@@ -46,12 +46,13 @@ for i  in range(1, length):
     var5 = np.array([i-1+3*length,i+3*length,i]) # inner to inner, trangle from higher to lower
     var6 = np.array([i-1+4*length,i+4*length,i-1+3*length]) # from main to inner top plane
     var7 = np.array([i-1+3*length,i+3*length,i+4*length]) # inner to main top plane
-    var8 = np.array([i-1+4*length,i+4*length,i-1+5*length]) # teeth top plane
+    var8 = np.array([i-1+4*length,i+4*length,i-1+5*length]) # teeth top plane7
+    var9 = np.array([i+length,i+4*length,i-1+5*length]) #inner bottom to inner top to teeth
+    var10 = np.array([i+length,i+4*length,i+5*length]) #inner bottom to inner top to next teeth
+    var11 = np.array([i-1+2*length,i-1+5*length,i+length]) # #teeth bottom and top to inner lower
+    var12 = np.array([i-1+2*length,i-1+5*length,i-1+length]) # #teeth bottom and top to inner lower
 
-
-    #var6 = np.array([i-1+4*length,i+4*length,i+length]) #from main to main. Too to bottom NOT NESSESERY, but points
-    #var7 = np.array([i-1+length,i+length,i-1+4*length]) # main to main. Bottom to top. NOT NESSESERY, but points
-
+    #Add to the face list.
     f.append(var)
     f.append(var2)
     f.append(var3)
@@ -60,6 +61,10 @@ for i  in range(1, length):
     f.append(var6)
     f.append(var7)
     f.append(var8)
+    f.append(var9)
+    f.append(var10)
+    f.append(var11)
+    f.append(var12)
 
 
 
