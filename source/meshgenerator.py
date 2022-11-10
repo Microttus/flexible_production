@@ -24,6 +24,16 @@ class MeshGenerator:
         self.r = 0
 
     def inputAndRun(self, pointsInner, pointsMain, pointsOuter , pointsInnerOffset, pointsMainOffset, pointsOuterOffset, D):
+        '''
+        :param pointsInner: Vertices in the cartesian coordinates
+        :param pointsMain: Vertices in the cartesian coordinates
+        :param pointsOuter: Vertices in the cartesian coordinates
+        :param pointsInnerOffset: Vertices in the cartesian coordinates
+        :param pointsMainOffset: Vertices in the cartesian coordinates
+        :param pointsOuterOffset: Vertices in the cartesian coordinates
+        :param D: Outer diameter of the gear
+        :return:
+        '''
 
         self.pointsInner = pointsInner
         self.pointsMain = pointsMain
@@ -92,6 +102,9 @@ class MeshGenerator:
         plt.show()
 
     def generateSTL(self):
+        '''
+        :return: Generates the STL file in current location.
+        '''
         gear = mesh.Mesh(np.zeros(self.f.shape[0], dtype=mesh.Mesh.dtype))
         for i, self.f in enumerate(self.f):
             for j in range(3):

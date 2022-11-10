@@ -5,10 +5,9 @@ Main class
 Martin Økter, Per Henrik, Torbjørn
 28.10.2022
 '''
-
+import pointgenerator
 import userapi
 import pointgenerator as pg
-import matplotlib.pyplot as plt
 import meshgenerator
 
 
@@ -22,6 +21,7 @@ class GearGenerator:
 
         self.mg = meshgenerator.MeshGenerator()
         self.uApi = userapi.UserApi()
+        self.pg = pointgenerator.PointGenerator()
 
     def inputFase(self):
         '''
@@ -43,12 +43,12 @@ class GearGenerator:
         action = True
 
         #Import Points from point generator
-        pointsInner = self.pGen.getPointsInner()
-        pointsMain = self.pGen.getPointsMain()
-        pointsOuter =  self.pGen.getPointsOuter()
-        pointsInnerOffset = self.pGen.getPointsInnerOffset()
-        pointsMainOffset = self.pGen.getPointsMainOffset()
-        pointsOuterOffset =  self.pGen.getPointsOuterOffset()
+        pointsInner = self.pg.getPointsInner()
+        pointsMain = self.pg.getPointsMain()
+        pointsOuter =  self.pg.getPointsOuter()
+        pointsInnerOffset = self.pg.getPointsInnerOffset()
+        pointsMainOffset = self.pg.getPointsMainOffset()
+        pointsOuterOffset =  self.pg.getPointsOuterOffset()
 
         self.mg.inputAndRun(pointsInner, pointsMain, pointsOuter, pointsInnerOffset, pointsMainOffset, pointsOuterOffset, self.spesificationList[1])
         self.mg.faceGenerator()
@@ -76,6 +76,7 @@ class GearGenerator:
         action = self.uApi.fetchingTemperature()
 
         #Rertriving location mean temperature
+<<<<<<< HEAD
 
         if self.p_index == 0:
             # [innerDiameter, outerDiameter, teethheight,gearheight, nuberOfTeeth, printTemperature [C],  locationLat, locationLong]
@@ -83,6 +84,19 @@ class GearGenerator:
             self.temp = self.pGen.returnTemp()
             self.p_index = 1
 
+=======
+        self.uApi.fetchingTemperature()
+        # [innerDiameter, outerDiameter, teethheight,gearheight, nuberOfTeeth, printTemperature [C],  locationLat, locationLong]
+        self.pg.inputList(self.spesificationList)
+        # Activates all the functions
+        self.pg.temperatureSizing()
+        self.pg.generatingInnerCircle()
+        self.pg.generatingMainCircle()
+        self.pg.generatingOuterCircle()
+        self.pg.offsetPoints()
+        self.temp = self.pg.returnTemp()
+        # Per
+>>>>>>> 4d4266e (rewritten classes to have a function taking input, and init only init)
         if action:
             self.next += 1
         return 0

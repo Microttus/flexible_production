@@ -12,7 +12,7 @@ Per Henrik Hardeberg
 # # Update class diagram because API is a function inside PointGeneratic
 # # Skriv inn grønn heder i alle funksjonene
 # # endre alle klassene til init osv.
-            #Mesh generator
+            #Mesh generator OK
             #Pointgenerator
 
 
