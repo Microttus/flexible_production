@@ -18,6 +18,7 @@ class PointGenerator:
         self.gearHeight = list[3]
         self.numberOfTeeth = list[4]
         self.printTemp = list[5]
+        self.meanTemp = []
         self.Lat = list[6]  #Input from User interface, Need some restrictions
         self.Long = list[7] #Input from User interface, Need some restrictions
 
@@ -99,13 +100,22 @@ class PointGenerator:
         self.loc_data = self.geo_json['data']
         self.loc_data = self.geo_json['data']
         self.loc_id = self.loc_data[0]['id']
+        self.name = self.loc_data[0]['name']
         self.id_str = str(self.loc_id)
         self.parameters = {'sources': self.id_str,'elements': 'mean(air_temperature P1D)','referencetime': '2021-06-01/2022-08-01',}
         self.r = requests.get(self.endpoint, self.parameters, auth=(self.client_id,''))
         self.temp_json = self.r.json()
         self.temp_data = self.temp_json['data']
-        self.meanTemp = self.temp_data[0]['observations'][0]['value']
+        #self.meanTemp = self.temp_data[0]['observations'][0]['value']
         #print(self.meanTemp)
+        lenght = len(self.temp_data)
+        allTemp = []
+
+        for i in range(0, lenght):
+            Temp = (self.temp_data[i]['observations'][0]['value'])
+            allTemp.append(Temp)
+        self.meanTemp = np.mean(allTemp)
+        print('mean temp at :', self.name, 'is :', self.meanTemp, 'celcius')
 
         #Change the size of the gear:
         degDiff = self.printTemp - self.meanTemp

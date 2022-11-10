@@ -13,7 +13,18 @@ from stl import mesh
 
 
 class MeshGenerator:
-    def __init__(self, pointsInner, pointsMain, pointsOuter , pointsInnerOffset, pointsMainOffset, pointsOuterOffset, D):
+    def __init__(self):
+        self.pointsInner = 0
+        self.pointsMain = 0
+        self.pointsOuter = 0
+        self.pointsInnerOffset = 0
+        self.pointsMainOffset = 0
+        self.pointsOuterOffset = 0
+        self.D = 0
+        self.r = 0
+
+    def inputAndRun(self, pointsInner, pointsMain, pointsOuter , pointsInnerOffset, pointsMainOffset, pointsOuterOffset, D):
+
         self.pointsInner = pointsInner
         self.pointsMain = pointsMain
         self.pointsOuter = pointsOuter
@@ -23,9 +34,6 @@ class MeshGenerator:
         self.D = D #Diameter of the gear
         self.r = self.D/2 #radus of the gear
 
-        self.faceGenerator()
-        self.plotMesh()
-
 
     def faceGenerator(self):
         '''
@@ -34,8 +42,6 @@ class MeshGenerator:
         self.v = np.vstack((self.pointsInner, self.pointsMain, self.pointsOuter,self.pointsInnerOffset,self.pointsMainOffset, self.pointsOuterOffset))
         self.f = []
         length = len(self.pointsInner)
-
-
 
         for i  in range(1, length):
             var =  np.array([i-1,i,i-1 + length]) # inner lower circle, inn to out triangles
@@ -86,12 +92,10 @@ class MeshGenerator:
         plt.show()
 
     def generateSTL(self):
-
-        gear = mesh.Mesh(np.zeros(f.shape[0], dtype=mesh.Mesh.dtype))
-        for i, f in enumerate(f):
+        gear = mesh.Mesh(np.zeros(self.f.shape[0], dtype=mesh.Mesh.dtype))
+        for i, self.f in enumerate(self.f):
             for j in range(3):
-                gear.vectors[i][j] = v[f[j],:]
-
+                gear.vectors[i][j] = self.v[self.f[j],:]
         #Write the mesh to file "gearPrint.stl"
-        gear.save('gearPrint.stl')
+        gear.save('gearPrintPer.stl')
         return 0

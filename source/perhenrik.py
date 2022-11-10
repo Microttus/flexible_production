@@ -10,14 +10,18 @@ Per Henrik Hardeberg
 # # Calculate and correct the size of the gear! Think this is OK. The size is returned in prosent. Needs to be printed.
 # # Help with the mesh?
 # # Update class diagram because API is a function inside PointGeneratic
-## Løse for null
+# # Skriv inn grønn heder i alle funksjonene
+# # endre alle klassene til init osv.
+            #Mesh generator
+            #Pointgenerator
+
 
 
 import numpy as np
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D, art3d
 import pointgenerator as pg
-from stl import mesh
+#from stl import mesh
 
 
 dummyList = [0.1, 0.5, 0.05,  0.05,25, 200,8.3540, 58.2250]
@@ -78,7 +82,7 @@ plt.show()
 
 
 
-'''
+
 gear = mesh.Mesh(np.zeros(f.shape[0], dtype=mesh.Mesh.dtype))
 for i, f in enumerate(f):
     for j in range(3):
@@ -90,7 +94,7 @@ print(enumerate(f))
 gear.save('gearPrint.stl')
 print(len(gear.vectors))
 
-'''
+
 
 ''' 
   #Plot the points just for fun

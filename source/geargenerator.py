@@ -20,7 +20,7 @@ class GearGenerator:
         self.pointsInner = []
         self.p_index = 0
 
-        #self.mg = meshgenerator.MeshGenerator()
+        self.mg = meshgenerator.MeshGenerator()
         self.uApi = userapi.UserApi()
 
     def inputFase(self):
@@ -50,7 +50,10 @@ class GearGenerator:
         pointsMainOffset = self.pGen.getPointsMainOffset()
         pointsOuterOffset =  self.pGen.getPointsOuterOffset()
 
-        mg = meshgenerator.MeshGenerator(pointsInner, pointsMain, pointsOuter, pointsInnerOffset, pointsMainOffset, pointsOuterOffset, self.spesificationList[1])
+        self.mg.inputAndRun(pointsInner, pointsMain, pointsOuter, pointsInnerOffset, pointsMainOffset, pointsOuterOffset, self.spesificationList[1])
+        self.mg.faceGenerator()
+        self.mg.plotMesh()
+        self.mg.generateSTL()
 
         if action:
             self.next += 1
@@ -69,17 +72,14 @@ class GearGenerator:
         '''
         Fase for genrerating th epointcloud from the user data and preset parameters
         '''
-        # Keyword if loop shall be used
+        # Keyword if loop shal be used
+        action = True
 
         #Rertriving location mean temperature
-        action = self.uApi.fetchingTemperature()
-
-        if self.p_index == 0:
-            # [innerDiameter, outerDiameter, teethheight,gearheight, nuberOfTeeth, printTemperature [C],  locationLat, locationLong]
-            self.pGen = pg.PointGenerator(self.spesificationList) #Her oprettes objektet, bytt til spesification list når den skal testes skikkelig.
-            self.temp = self.pGen.returnTemp()
-            self.p_index = 1
-
+        self.uApi.fetchingTemperature()
+        # [innerDiameter, outerDiameter, teethheight,gearheight, nuberOfTeeth, printTemperature [C],  locationLat, locationLong]
+        self.pGen = pg.PointGenerator(self.spesificationList) #Her oprettes objektet, bytt til spesification list når den skal testes skikkelig.
+        self.temp = self.pGen.returnTemp()
         # Per
         if action:
             self.next += 1
