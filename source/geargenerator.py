@@ -11,22 +11,26 @@ import pointgenerator as pg
 import matplotlib.pyplot as plt
 import meshgenerator
 
-uApi = userapi.UserApi()
 
 class GearGenerator:
     def __init__(self):
         self.next = 0
-        self.spesificationList = [10, 40, 2,  2, 20, 200,8.3540, 58.2250]
+        self.spesificationList = [10, 40, 2,  2, 20, 200, 8.3540, 58.2250]
         self.temp = 0
         self.pointsInner = []
+
+        #self.mg = meshgenerator.MeshGenerator()
+        self.uApi = userapi.UserApi()
 
     def inputFase(self):
         '''
         Fase for reciving user input for wanted size of the gear
         '''
-        action = uApi.userInput()
+        action = self.uApi.userInput()
         if action:
-            self.spesificationList = uApi.getList()
+            midleList = self.uApi.getList()
+            if midleList[4] != 0:
+                self.spesificationList = uApi.getList()
             self.next += 1
         return 0
 
@@ -34,7 +38,7 @@ class GearGenerator:
         '''
         Fase for creating a mesh from the reciving point cloud and save as .stl file
         '''
-        action = uApi.generatingPMS(self.temp)
+        action = self.uApi.generatingPMS(self.temp)
         action = True
 
         #Import Points from point generator
@@ -57,7 +61,7 @@ class GearGenerator:
         '''
         Feedback for succsesfull gear generating and usefull information
         '''
-        action = uApi.outputPage()
+        action = self.uApi.outputPage()
         if action:
             self.next = 0
         return 0
@@ -70,8 +74,7 @@ class GearGenerator:
         action = True
 
         #Rertriving location mean temperature
-        uApi.fetchingTemperature()
-
+        self.uApi.fetchingTemperature()
         # [innerDiameter, outerDiameter, teethheight,gearheight, nuberOfTeeth, printTemperature [C],  locationLat, locationLong]
         self.pGen = pg.PointGenerator(self.spesificationList) #Her oprettes objektet, bytt til spesification list når den skal testes skikkelig.
         self.temp = self.pGen.returnTemp()

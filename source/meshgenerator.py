@@ -1,14 +1,15 @@
-'''
+"""
 Gear Generator MAS417 Project
 Flexible Production
 Per Henrik Hardeberg
 10.11.2022
-'''
+"""
 
 
 import numpy as np
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D, art3d
+from stl import mesh
 
 
 class MeshGenerator:
@@ -20,9 +21,11 @@ class MeshGenerator:
         self.pointsMainOffset = pointsMainOffset
         self.pointsOuterOffset = pointsOuterOffset
         self.D = D #Diameter of the gear
-        self.r =self.D/2 #radus of the gear
+        self.r = self.D/2 #radus of the gear
+
         self.faceGenerator()
         self.plotMesh()
+        self.generateSTL()
 
 
     def faceGenerator(self):
@@ -32,8 +35,6 @@ class MeshGenerator:
         self.v = np.vstack((self.pointsInner, self.pointsMain, self.pointsOuter,self.pointsInnerOffset,self.pointsMainOffset, self.pointsOuterOffset))
         self.f = []
         length = len(self.pointsInner)
-
-
 
         for i  in range(1, length):
             var =  np.array([i-1,i,i-1 + length]) # inner lower circle, inn to out triangles
@@ -69,16 +70,25 @@ class MeshGenerator:
 
 
     def plotMesh(self):
-        '''
+        """
         :return: Plots all the faces of v[f]. Visualize like the resultant STL
-        '''
+        """
 
-        fig =plt.figure(figsize=(10,10))
+        fig = plt.figure(figsize=(10,10))
         ax = fig.add_subplot(projection="3d")
         scale = self.v.shape
         pc = art3d.Poly3DCollection(self.v[self.f],  edgecolor="black")
         ax.add_collection(pc)
         ax.auto_scale_xyz(scale,scale,scale)
-        plt.xlim(-self.r,self.r)
+        plt.xlim(-self.r, self.r)
         plt.ylim(-self.r, self.r)
         plt.show()
+
+    def generateSTL(self):
+        gear = mesh.Mesh(np.zeros(self.f.shape[0], dtype=mesh.Mesh.dtype))
+        for i, self.f in enumerate(self.f):
+            for j in range(3):
+                gear.vectors[i][j] = self.v[self.f[j],:]
+        #Write the mesh to file "gearPrint.stl"
+        gear.save('gearPrintPer.stl')
+        return 0

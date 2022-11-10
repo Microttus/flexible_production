@@ -10,6 +10,7 @@ Per Henrik Hardeberg
 # # Calculate and correct the size of the gear! Think this is OK. The size is returned in prosent. Needs to be printed.
 # # Help with the mesh?
 # # Update class diagram because API is a function inside PointGeneratic
+## Løse for null
 
 
 import numpy as np
@@ -77,7 +78,7 @@ plt.show()
 
 
 
-'''
+
 gear = mesh.Mesh(np.zeros(f.shape[0], dtype=mesh.Mesh.dtype))
 for i, f in enumerate(f):
     for j in range(3):
@@ -89,7 +90,7 @@ print(enumerate(f))
 gear.save('gearPrint.stl')
 print(len(gear.vectors))
 
-'''
+
 
 ''' 
   #Plot the points just for fun

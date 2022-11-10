@@ -83,7 +83,9 @@ class PointGenerator:
         self.pointsOuterOffset = np.array(self.pointsOuterOffset).T
 
     def temperatureSizing(self):
-
+        """
+        Description
+        """
         # Insert your own client ID here
         self.client_id = 'd5398c91-5891-4c26-b199-990eebd37174'
         self.endpoint = 'https://frost.met.no/observations/v0.jsonld'

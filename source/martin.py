@@ -7,11 +7,5 @@ Martin Økter
 '''
 
 
-import geargenerator
 
-gg = geargenerator.GearGenerator()
-
-
-while True:
-    gg.mainLoop()
 
