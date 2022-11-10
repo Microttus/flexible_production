@@ -14,6 +14,11 @@ import pygame
 import key_board_input
 import colors as cl
 
+import matplotlib
+matplotlib.use("Agg")
+import matplotlib.backends.backend_agg as agg
+import pylab
+
 class ApiLibrary:
     '''
     A compleate libary for buliding windows with
@@ -179,12 +184,36 @@ class ApiLibrary:
             action = False
             pygame.draw.rect(self.gameDisplay, inactive, (x_place, y_place, width, height), 3)
 
-        fin_tex = ''.join(self._file_name[text_index])
+        self._filename = ''.join(self._file_name[text_index])
 
-        self.message_display(fin_tex, size, x_place + 10, y_place, cl.black)
+        self.message_display(self._filename, size, x_place + 10, y_place, cl.black)
         action = True
         key_board_input.key_key(True)
+
+    def show_plot(self):
+        fig = pylab.figure(figsize=[4, 4],  # Inches
+                           dpi=100,  # 100 dots per inch, so the resulting buffer is 400x400 pixels
+                           )
+        ax = fig.gca()
+        ax.plot([1, 2, 4])
+
+        canvas = agg.FigureCanvasAgg(fig)
+        canvas.draw()
+        renderer = canvas.get_renderer()
+        raw_data = renderer.tostring_rgb()
+
+        size = canvas.get_width_height()
+
+        surf = pygame.image.fromstring(raw_data, size, "RGB")
+        self.gameDisplay.blit(surf, (0, 0))
 
     def returnLists(self):
         return self.specification
 
+    def returnName(self):
+        if self._filename == '':
+            self._filename = 'gear.stl'
+        else:
+            self._filename += '.stl'
+
+        return self._filename

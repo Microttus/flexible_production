@@ -4,11 +4,15 @@ Flexible Production
 UserApi
 Martin Økter
 25.10.2022
+
+Sources:
+https://stackoverflow.com/questions/48093361/using-matplotlib-in-pygame
 '''
 
 import apilibrary as api
 import colors as cl
 import os
+
 
 
 class UserApi:
@@ -17,6 +21,7 @@ class UserApi:
         self._locationTemp = 20
         self._filepath = 'C:/dustepc/dustemappe'
         self.myApi = api.ApiLibrary()
+        self._filename = ''
 
     def userInput(self):
         '''
@@ -70,17 +75,19 @@ class UserApi:
         '''
 
         self.myApi.message_display_center("Fetching temperature data and generating point cloud", 30, 600, 200, cl.black)
-        self.myApi.message_display_center("Name of genrated file:", 30, 600, 300, cl.black)
+        self.myApi.message_display_center("Name of genrated file:", 20, 600, 260, cl.black)
 
-        self.myApi.text_box(550, 400, 100, 30, cl.dark_blue, cl.black, 30, 0)
+        self.myApi.text_box(600, 300, 200, 30, cl.dark_blue, cl.black, 30, 0)
 
-        #self.myApi.img_show(520, 500, 2)
+        self.myApi.img_show(500, 500, 2)
 
-        action = self.myApi.button('Next', 520, 650, 160, 80, cl.dark_white, cl.dark_blue, True)
+        action = self.myApi.button('Next', 520, 680, 160, 80, cl.dark_white, cl.dark_blue, True)
 
         self.myApi.update_screen()
 
         if action:
+            self._filename = self.myApi.returnName()
+            print(self._filename)
             return True
 
         return False
@@ -92,7 +99,7 @@ class UserApi:
         self.myApi.message_display_center("Mean temperature last year at your location", 20, 600, 300, cl.grey)
         self.myApi.message_display_center("was {} degrees celsius".format(self._locationTemp), 20, 600, 350, cl.grey)
 
-        self.myApi.img_show(520, 500, 2)
+        self.myApi.img_show(500, 500, 2)
 
         self.myApi.update_screen()
 
