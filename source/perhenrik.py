@@ -6,16 +6,13 @@ Per Henrik Hardeberg
 '''
 
 # TO DO Per Henrik:
-# # Correct API to find mean. Not sure about the dates and the mean value
-# # Calculate and correct the size of the gear! Think this is OK. The size is returned in prosent. Needs to be printed.
-# # Help with the mesh?
 # # Update class diagram because API is a function inside PointGeneratic
 # # Skriv inn grønn heder i alle funksjonene
 
 import pointgenerator
 import meshgenerator
 
-spesificationList = [10, 40, 2,  2, 20, 200, 8.3540, 58.2250]
+spesificationList = [10, 40, 5,  5, 20, 200, 8.3540, 58.2250]
 pg = pointgenerator.PointGenerator()
 mg = meshgenerator.MeshGenerator()
 pg.inputList(spesificationList)

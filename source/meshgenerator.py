@@ -3,6 +3,8 @@ Gear Generator MAS417 Project
 Flexible Production
 Per Henrik Hardeberg
 10.11.2022
+
+Using source: https://github.com/WoLpH/numpy-stl to plot faces and generating STL file
 """
 
 
@@ -14,6 +16,9 @@ from stl import mesh
 
 class MeshGenerator:
     def __init__(self):
+        '''
+        Initialize class
+        '''
         self.pointsInner = 0
         self.pointsMain = 0
         self.pointsOuter = 0
@@ -90,7 +95,6 @@ class MeshGenerator:
         """
         :return: Plots all the faces of v[f]. Visualize like the resultant STL
         """
-
         fig = plt.figure(figsize=(10,10))
         ax = fig.add_subplot(projection="3d")
 
