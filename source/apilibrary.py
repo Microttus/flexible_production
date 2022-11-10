@@ -4,6 +4,9 @@ Flexible Production
 ApiLibary
 Martin Økter
 25.10.2022
+
+Referanse:
+This code was originaly inspired by a open source "Dodge Coin Game"
 '''
 
 #import key_board_input

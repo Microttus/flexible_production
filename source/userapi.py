@@ -8,6 +8,7 @@ Martin Økter
 
 import apilibrary as api
 import colors as cl
+import os
 
 
 class UserApi:
@@ -18,6 +19,9 @@ class UserApi:
         self.myApi = api.ApiLibrary()
 
     def userInput(self):
+        '''
+        User GUI for user input for size of the gear
+        '''
         self.myApi.message_display_center("Gear Generator v0.2", 70, 600, 50, cl.black)
         self.myApi.message_display_center("Press 'Enter' to exit text block", 20, 600, 100, cl.black)
 
@@ -53,10 +57,16 @@ class UserApi:
 
 
     def updateValues(self):
+        '''
+        Used for update spesification list from the internal list in the API class
+        '''
         self.specificationList = self.myApi.returnLists()
         return 0
 
     def fetchingTemperature(self):
+        '''
+        Page for the point fas and the temperature fase
+        '''
         self.myApi.message_display_center("Fetching temperature data", 40, 600, 200, cl.black)
         self.myApi.message_display_center("and generating point cloud", 40, 600, 300, cl.black)
 
@@ -80,6 +90,8 @@ class UserApi:
         return False
 
     def outputPage(self):
+        self._filepath = os.getcwd()
+
         self.myApi.message_display_center("Your gear are ready!", 40, 600, 200, cl.black)
         self.myApi.message_display_center("It is saved in {}".format(self._filepath), 20, 600, 300, cl.black)
 
