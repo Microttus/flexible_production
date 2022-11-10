@@ -16,7 +16,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D, art3d
 import pointgenerator as pg
-from stl import mesh
+#from stl import mesh
 
 
 dummyList = [0.1, 0.5, 0.05,  0.05,25, 200,8.3540, 58.2250]

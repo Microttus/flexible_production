@@ -4,7 +4,7 @@ APIWether class
 Martin Økter
 25.10.2022
 '''
-
+import numpy as np
 import requests
 
 # Insert your own client ID here
@@ -62,7 +62,12 @@ else:
 
 
 lenght = len(temp_data)
+allTemp = []
 
-for i in range(lenght):
-    meanTemp = temp_data[i]['observations'][0]['value']
+for i in range(0, lenght):
+    Temp = (temp_data[i]['observations'][0]['value'])
+    #meanTemp = np.array(Temp)
+    allTemp.append(Temp)
+
+meanTemp = np.mean(allTemp)
 print(meanTemp)
