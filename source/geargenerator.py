@@ -20,6 +20,8 @@ class GearGenerator:
         self.temp = 0
         self.pointsInner = []
 
+        self.mg = meshgenerator()
+
     def inputFase(self):
         '''
         Fase for reciving user input for wanted size of the gear
