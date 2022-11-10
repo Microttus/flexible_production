@@ -19,7 +19,7 @@ class GearGenerator:
         self.temp = 0
         self.pointsInner = []
 
-        #self.mg = meshgenerator.MeshGenerator()
+        self.mg = meshgenerator.MeshGenerator()
         self.uApi = userapi.UserApi()
 
     def inputFase(self):
@@ -49,9 +49,10 @@ class GearGenerator:
         pointsMainOffset = self.pGen.getPointsMainOffset()
         pointsOuterOffset =  self.pGen.getPointsOuterOffset()
 
-        mg = meshgenerator.MeshGenerator(pointsInner, pointsMain, pointsOuter, pointsInnerOffset, pointsMainOffset, pointsOuterOffset, self.spesificationList[1])
-
-
+        self.mg.inputAndRun(pointsInner, pointsMain, pointsOuter, pointsInnerOffset, pointsMainOffset, pointsOuterOffset, self.spesificationList[1])
+        self.mg.faceGenerator()
+        self.mg.plotMesh()
+        self.mg.generateSTL()
 
         if action:
             self.next += 1

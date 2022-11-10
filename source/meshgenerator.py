@@ -13,7 +13,18 @@ from stl import mesh
 
 
 class MeshGenerator:
-    def __init__(self, pointsInner, pointsMain, pointsOuter , pointsInnerOffset, pointsMainOffset, pointsOuterOffset, D):
+    def __init__(self):
+        self.pointsInner = 0
+        self.pointsMain = 0
+        self.pointsOuter = 0
+        self.pointsInnerOffset = 0
+        self.pointsMainOffset = 0
+        self.pointsOuterOffset = 0
+        self.D = 0
+        self.r = 0
+
+    def inputAndRun(self, pointsInner, pointsMain, pointsOuter , pointsInnerOffset, pointsMainOffset, pointsOuterOffset, D):
+
         self.pointsInner = pointsInner
         self.pointsMain = pointsMain
         self.pointsOuter = pointsOuter
@@ -22,10 +33,6 @@ class MeshGenerator:
         self.pointsOuterOffset = pointsOuterOffset
         self.D = D #Diameter of the gear
         self.r = self.D/2 #radus of the gear
-
-        self.faceGenerator()
-        self.plotMesh()
-        self.generateSTL()
 
 
     def faceGenerator(self):
