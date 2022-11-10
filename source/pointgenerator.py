@@ -9,7 +9,23 @@ import numpy as np
 import requests
 
 class PointGenerator:
-    def __init__(self, list):
+    def __init__(self):
+
+        self.cirkInner = 0
+        self.cirkOuter = 0
+        self.teethHeiht = 0
+        self.gearHeight = 0
+        self.numberOfTeeth = 0
+        self.printTemp = 0
+        self.meanTemp = 0
+        self.Lat = 0
+        self.Long = 0
+
+    def inputList(self, list):
+        '''
+        :param list: List with all the inputs from the user interface
+        :return: list of all points in the circle
+        '''
         #self.specificationList = list
         # [innerDiameter, outerDiameter, teethheight,gearheight, nuberOfTeeth, printTemperature [C],  locationLat, locationLong]
         self.cirkInner = list[0]
@@ -26,17 +42,12 @@ class PointGenerator:
         self.theta = np.linspace(0, 2*np.pi, int(self.numberOfTeeth))
         self.thetaShifted = self.theta + self.theta[1]/2
 
-        # Activates all the functions
-        self.temperatureSizing()
-        self.generatingInnerCircle()
-        self.generatingMainCircle()
-        self.generatingOuterCircle()
-        self.offsetPoints()
-
 
 
     def generatingInnerCircle(self):
-
+        '''
+        :return: Generates the points of the inner lower circle
+        '''
         # make a simple unit circle with teeth number of points
         self.xInner, self.yInner = self.cirkInner/2 * np.cos(self.theta), self.cirkInner/2 * np.sin(self.theta) #x,y are coordinates for the inner cirkle
         self.zInner = np.zeros(int(self.numberOfTeeth))
@@ -44,6 +55,9 @@ class PointGenerator:
         #self.pointsInner = [value*self.multiplyingFactor for value in self.pointsInner] #Multiplies list by the sizing factor
         self.pointsInner = np.array(self.pointsInner).T
     def generatingMainCircle(self):
+        '''
+        :return:   Generates the points of the main lower circle
+        '''
          # make a simple unit circle
         self.xMain, self.yMain = self.cirkMain/2 * np.cos(self.theta), self.cirkMain/2 * np.sin(self.theta) #x,y are coordinates for the inner cirkle
         self.zMain = np.zeros(int(self.numberOfTeeth))
@@ -52,6 +66,9 @@ class PointGenerator:
         self.pointsMain = np.array(self.pointsMain).T
 
     def generatingOuterCircle(self):
+        '''
+        :return: Generates the points of the outer lower circle
+        '''
         # make a simple unit circle shiftet one halv tooth
         self.xOuter, self.yOuter = self.cirkOuter/2 * np.cos(self.thetaShifted), self.cirkOuter/2 * np.sin(self.thetaShifted) #x,y are coordinates for the inner cirkle
         self.zOuter = np.zeros(int(self.numberOfTeeth))
@@ -60,6 +77,9 @@ class PointGenerator:
         self.pointsOuter = np.array(self.pointsOuter).T
 
     def offsetPoints(self):
+        '''
+        :return: Reproduce the points from above but shifts them in the z-direction
+        '''
         #makes the offset plane to give the gear a thickness
         self.xInnerOffset = self.xInner
         self.yInnerOffset = self.yInner
@@ -83,9 +103,11 @@ class PointGenerator:
         self.pointsOuterOffset = np.array(self.pointsOuterOffset).T
 
     def temperatureSizing(self):
-        """
-        Description
-        """
+        '''
+        :return: Calculates the mean temperature from the last year and use this to size the gear. In other
+        words: If the gear is printed in high temperature and needs to be used in cold environment, the STL of the gear needs to be bigger
+        than the given size to shrink and fit for the environment. From the given long and lat the location is found and used to calculate the factor.
+        '''
         # Insert your own client ID here
         self.client_id = 'd5398c91-5891-4c26-b199-990eebd37174'
         self.endpoint = 'https://frost.met.no/observations/v0.jsonld'
