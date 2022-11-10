@@ -76,15 +76,13 @@ class GearGenerator:
         action = self.uApi.fetchingTemperature()
 
         #Rertriving location mean temperature
-<<<<<<< HEAD
 
         if self.p_index == 0:
             # [innerDiameter, outerDiameter, teethheight,gearheight, nuberOfTeeth, printTemperature [C],  locationLat, locationLong]
-            self.pGen = pg.PointGenerator(self.spesificationList) #Her oprettes objektet, bytt til spesification list når den skal testes skikkelig.
-            self.temp = self.pGen.returnTemp()
+            self.pg.inputList(self.spesificationList) #Her oprettes objektet, bytt til spesification list når den skal testes skikkelig.
+            self.temp = self.pg.returnTemp()
             self.p_index = 1
 
-=======
         self.uApi.fetchingTemperature()
         # [innerDiameter, outerDiameter, teethheight,gearheight, nuberOfTeeth, printTemperature [C],  locationLat, locationLong]
         self.pg.inputList(self.spesificationList)
@@ -94,9 +92,8 @@ class GearGenerator:
         self.pg.generatingMainCircle()
         self.pg.generatingOuterCircle()
         self.pg.offsetPoints()
-        self.temp = self.pg.returnTemp()
         # Per
->>>>>>> 4d4266e (rewritten classes to have a function taking input, and init only init)
+
         if action:
             self.next += 1
         return 0
