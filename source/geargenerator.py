@@ -18,6 +18,7 @@ class GearGenerator:
         self.temp = 0
         self.pointsInner = []
         self.p_index = 0
+        self._filename = ''
 
         self.mg = meshgenerator.MeshGenerator()
         self.uApi = userapi.UserApi()
@@ -53,7 +54,7 @@ class GearGenerator:
         self.mg.inputAndRun(pointsInner, pointsMain, pointsOuter, pointsInnerOffset, pointsMainOffset, pointsOuterOffset, self.spesificationList[1])
         self.mg.faceGenerator()
         self.mg.plotMesh()
-        self.mg.generateSTL()
+        self.mg.generateSTL(self._filename)
 
         if action:
             self.next += 1
@@ -90,11 +91,10 @@ class GearGenerator:
             self.temp = self.pg.returnTemp()
             self.p_index = 1
 
-
-        # Per
-
         if action:
             self.next += 1
+            self._filename = self.uApi.getFilename()
+            print(self._filename)
         return 0
 
     def mainLoop(self):

@@ -87,7 +87,6 @@ class UserApi:
 
         if action:
             self._filename = self.myApi.returnName()
-            print(self._filename)
             return True
 
         return False
@@ -122,3 +121,6 @@ class UserApi:
 
     def getList(self):
         return self.specificationList
+
+    def getFilename(self):
+        return self._filename

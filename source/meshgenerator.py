@@ -101,7 +101,7 @@ class MeshGenerator:
         plt.ylim(-self.r, self.r)
         plt.show()
 
-    def generateSTL(self):
+    def generateSTL(self, filename):
         '''
         :return: Generates the STL file in current location.
         '''
@@ -110,5 +110,5 @@ class MeshGenerator:
             for j in range(3):
                 gear.vectors[i][j] = self.v[self.f[j],:]
         #Write the mesh to file "gearPrint.stl"
-        gear.save('gearPrintPer.stl')
+        gear.save(filename)
         return 0
