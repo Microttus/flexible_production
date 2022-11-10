@@ -61,25 +61,17 @@ class MeshGenerator:
 
 
     def plotMesh(self):
+        '''
+
+        :return: Plots all the faces of v[f]. Visualize like the resultant STL
+        '''
 
         fig =plt.figure(figsize=(10,10))
         ax = fig.add_subplot(projection="3d")
-        scalex = self.v.shape
-        #scaley = scalex/5
-        #scalez = scalex/5
+        scale = self.v.shape
         pc = art3d.Poly3DCollection(self.v[self.f],  edgecolor="black")
         ax.add_collection(pc)
-        ax.auto_scale_xyz(scalex,scalex,scalex)
+        ax.auto_scale_xyz(scale,scale,scale)
         plt.xlim(-self.r,self.r)
         plt.ylim(-self.r, self.r)
         plt.show()
-
-
-
-    def printPlot(self):
-        """
-        Description
-        :return:
-        Returns the list of the Outer circle with ofset. x = getPointsOuterOffset[0], y = getPointsOuterOffset[1], z = getPointsOuterOffset[2]
-        """
-        return 0
