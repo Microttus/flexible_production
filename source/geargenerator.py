@@ -18,6 +18,7 @@ class GearGenerator:
         self.spesificationList = [10, 40, 2,  2, 20, 200, 8.3540, 58.2250]
         self.temp = 0
         self.pointsInner = []
+        self.p_index = 0
 
         #self.mg = meshgenerator.MeshGenerator()
         self.uApi = userapi.UserApi()
@@ -30,7 +31,7 @@ class GearGenerator:
         if action:
             midleList = self.uApi.getList()
             if midleList[4] != 0:
-                self.spesificationList = uApi.getList()
+                self.spesificationList = self.uApi.getList()
             self.next += 1
         return 0
 
@@ -51,8 +52,6 @@ class GearGenerator:
 
         mg = meshgenerator.MeshGenerator(pointsInner, pointsMain, pointsOuter, pointsInnerOffset, pointsMainOffset, pointsOuterOffset, self.spesificationList[1])
 
-
-
         if action:
             self.next += 1
         return 0
@@ -70,14 +69,17 @@ class GearGenerator:
         '''
         Fase for genrerating th epointcloud from the user data and preset parameters
         '''
-        # Keyword if loop shal be used
-        action = True
+        # Keyword if loop shall be used
 
         #Rertriving location mean temperature
-        self.uApi.fetchingTemperature()
-        # [innerDiameter, outerDiameter, teethheight,gearheight, nuberOfTeeth, printTemperature [C],  locationLat, locationLong]
-        self.pGen = pg.PointGenerator(self.spesificationList) #Her oprettes objektet, bytt til spesification list når den skal testes skikkelig.
-        self.temp = self.pGen.returnTemp()
+        action = self.uApi.fetchingTemperature()
+
+        if self.p_index == 0:
+            # [innerDiameter, outerDiameter, teethheight,gearheight, nuberOfTeeth, printTemperature [C],  locationLat, locationLong]
+            self.pGen = pg.PointGenerator(self.spesificationList) #Her oprettes objektet, bytt til spesification list når den skal testes skikkelig.
+            self.temp = self.pGen.returnTemp()
+            self.p_index = 1
+
         # Per
         if action:
             self.next += 1

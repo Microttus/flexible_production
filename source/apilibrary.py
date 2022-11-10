@@ -38,6 +38,8 @@ class ApiLibrary:
         self.fps = 15
         self.text_for_print = [[]]
         self.specification = []
+        self._file_name = [[]]
+        self._filename = ''
 
         self.gearDisc = pygame.image.load('Images/gearIlu.jpg')
         self.gearDisc = pygame.transform.scale(self.gearDisc,(400,400))
@@ -98,7 +100,7 @@ class ApiLibrary:
 
         return non_action
 
-    def text_box(self, x_place, y_place, width, height, active, inactive, size=30, text_index=0):
+    def text_box_float(self, x_place, y_place, width, height, active, inactive, size=30, text_index=0):
         if len(self.text_for_print) < text_index+2:
             self.text_for_print.append([])
             self.specification.append(0)
@@ -140,6 +142,44 @@ class ApiLibrary:
             self.specification[text_index] = number_spec
         except ValueError:
             self.text_for_print[text_index] = []
+
+        self.message_display(fin_tex, size, x_place + 10, y_place, cl.black)
+        action = True
+        key_board_input.key_key(True)
+
+    def text_box(self, x_place, y_place, width, height, active, inactive, size=30, text_index=0):
+
+        pos = pygame.mouse.get_pos()
+        pressed = pygame.mouse.get_pressed()
+        action = False
+        print_key = True
+        x_place = x_place - width / 2
+
+        pygame.draw.rect(self.gameDisplay, cl.white, (x_place, y_place, width, height))
+
+        if x_place + width > pos[0] > x_place and y_place + height > pos[1] > y_place:
+            if pressed[0] == 1 or action == True:
+                action = True
+                while print_key:
+                    text_two = key_board_input.key_board()
+                    if text_two != None and text_two != '-1':
+                        self._file_name[text_index].append(text_two)
+                    if text_two == '-1' and len(self._file_name[text_index]) > 0:
+                        del (self._file_name[text_index][-1])
+                    print_key = key_board_input.key_key()
+                    fin_tex = ''.join(self._file_name[text_index])
+                    self.message_display(fin_tex, size, x_place + 10, y_place, cl.black)
+                    pygame.draw.rect(self.gameDisplay, active, (x_place, y_place, width, height), 5)
+                    pygame.display.update(pygame.rect.Rect(x_place, y_place, width, height))
+                    self.gameDisplay.fill(cl.white)
+            else:
+                pygame.draw.rect(self.gameDisplay, active, (x_place, y_place, width, height), 3)
+                action = False
+        else:
+            action = False
+            pygame.draw.rect(self.gameDisplay, inactive, (x_place, y_place, width, height), 3)
+
+        fin_tex = ''.join(self._file_name[text_index])
 
         self.message_display(fin_tex, size, x_place + 10, y_place, cl.black)
         action = True
