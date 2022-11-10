@@ -10,6 +10,7 @@ Per Henrik Hardeberg
 # # Calculate and correct the size of the gear! Think this is OK. The size is returned in prosent. Needs to be printed.
 # # Help with the mesh?
 # # Update class diagram because API is a function inside PointGeneratic
+## Løse for null
 
 
 import numpy as np
