@@ -112,6 +112,8 @@ class UserApi:
 
         action = self.myApi.button('New Gear', 520, 650, 160, 80, cl.dark_white, cl.dark_blue, True)
 
+        self.myApi.show_plot()
+
         self.myApi.update_screen()
 
         if action:

@@ -99,7 +99,7 @@ class MeshGenerator:
         ax.auto_scale_xyz(scale,scale,scale)
         plt.xlim(-self.r, self.r)
         plt.ylim(-self.r, self.r)
-        plt.show()
+
 
     def generateSTL(self, filename):
         '''
