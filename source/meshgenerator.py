@@ -25,6 +25,7 @@ class MeshGenerator:
 
         self.faceGenerator()
         self.plotMesh()
+        self.generateSTL()
 
 
     def faceGenerator(self):
@@ -34,8 +35,6 @@ class MeshGenerator:
         self.v = np.vstack((self.pointsInner, self.pointsMain, self.pointsOuter,self.pointsInnerOffset,self.pointsMainOffset, self.pointsOuterOffset))
         self.f = []
         length = len(self.pointsInner)
-
-
 
         for i  in range(1, length):
             var =  np.array([i-1,i,i-1 + length]) # inner lower circle, inn to out triangles
@@ -86,12 +85,10 @@ class MeshGenerator:
         plt.show()
 
     def generateSTL(self):
-
-        gear = mesh.Mesh(np.zeros(f.shape[0], dtype=mesh.Mesh.dtype))
-        for i, f in enumerate(f):
+        gear = mesh.Mesh(np.zeros(self.f.shape[0], dtype=mesh.Mesh.dtype))
+        for i, self.f in enumerate(self.f):
             for j in range(3):
-                gear.vectors[i][j] = v[f[j],:]
-
+                gear.vectors[i][j] = self.v[self.f[j],:]
         #Write the mesh to file "gearPrint.stl"
-        gear.save('gearPrint.stl')
+        gear.save('gearPrintPer.stl')
         return 0
