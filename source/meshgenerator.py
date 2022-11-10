@@ -93,12 +93,20 @@ class MeshGenerator:
 
         fig = plt.figure(figsize=(10,10))
         ax = fig.add_subplot(projection="3d")
+
         scale = self.v.shape
         pc = art3d.Poly3DCollection(self.v[self.f],  edgecolor="black")
         ax.add_collection(pc)
         ax.auto_scale_xyz(scale,scale,scale)
+
         plt.xlim(-self.r, self.r)
         plt.ylim(-self.r, self.r)
+
+        imgName = 'Images/gearImg.png'
+
+        plt.savefig(imgName)
+
+        return imgName
 
 
     def generateSTL(self, filename):

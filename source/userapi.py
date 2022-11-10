@@ -106,13 +106,11 @@ class UserApi:
 
     def outputPage(self):
         self._filepath = os.getcwd()
-
-        self.myApi.message_display_center("Your gear are ready!", 40, 600, 200, cl.black)
-        self.myApi.message_display_center("It is saved in {}".format(self._filepath), 20, 600, 300, cl.black)
+        self.myApi.show_plot(400, 200)
+        self.myApi.message_display_center("Your gear are ready!", 40, 600, 170, cl.black)
+        self.myApi.message_display_center("It is saved in {}".format(self._filepath), 20, 600, 250, cl.black)
 
         action = self.myApi.button('New Gear', 520, 650, 160, 80, cl.dark_white, cl.dark_blue, True)
-
-        self.myApi.show_plot()
 
         self.myApi.update_screen()
 

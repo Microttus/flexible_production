@@ -17,7 +17,6 @@ import colors as cl
 import matplotlib
 matplotlib.use("Agg")
 import matplotlib.backends.backend_agg as agg
-import pylab
 
 class ApiLibrary:
     '''
@@ -45,6 +44,8 @@ class ApiLibrary:
         self.specification = []
         self._file_name = [[]]
         self._filename = ''
+        self.surf = 0
+        self.s_ind = 0
 
         self.gearDisc = pygame.image.load('Images/gearIlu.jpg')
         self.gearDisc = pygame.transform.scale(self.gearDisc,(400,400))
@@ -190,22 +191,13 @@ class ApiLibrary:
         action = True
         key_board_input.key_key(True)
 
-    def show_plot(self):
-        fig = pylab.figure(figsize=[4, 4],  # Inches
-                           dpi=100,  # 100 dots per inch, so the resulting buffer is 400x400 pixels
-                           )
-        ax = fig.gca()
-        ax.plot([1, 2, 4])
+    def show_plot(self, xpos, ypos):
+        if self.s_ind == 0:
+            self.gearShow = pygame.image.load('Images/gearImg.png')
+            self.gearShow = pygame.transform.scale(self.gearShow, (400, 450))
+            self.s_ind = 1
 
-        canvas = agg.FigureCanvasAgg(fig)
-        canvas.draw()
-        renderer = canvas.get_renderer()
-        raw_data = renderer.tostring_rgb()
-
-        size = canvas.get_width_height()
-
-        surf = pygame.image.fromstring(raw_data, size, "RGB")
-        self.gameDisplay.blit(surf, (0, 0))
+        self.gameDisplay.blit(self.gearShow, (xpos, ypos))
 
     def returnLists(self):
         return self.specification
