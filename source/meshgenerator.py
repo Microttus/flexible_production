@@ -9,6 +9,7 @@ Per Henrik Hardeberg
 import numpy as np
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D, art3d
+from stl import mesh
 
 
 class MeshGenerator:
@@ -83,3 +84,14 @@ class MeshGenerator:
         plt.xlim(-self.r, self.r)
         plt.ylim(-self.r, self.r)
         plt.show()
+
+    def generateSTL(self):
+
+        gear = mesh.Mesh(np.zeros(f.shape[0], dtype=mesh.Mesh.dtype))
+        for i, f in enumerate(f):
+            for j in range(3):
+                gear.vectors[i][j] = v[f[j],:]
+
+        #Write the mesh to file "gearPrint.stl"
+        gear.save('gearPrint.stl')
+        return 0
