@@ -8,6 +8,7 @@ Per Henrik Hardeberg
 import numpy as np
 import requests
 
+
 class PointGenerator:
     def __init__(self):
 
@@ -52,7 +53,7 @@ class PointGenerator:
         self.xInner, self.yInner = self.cirkInner/2 * np.cos(self.theta), self.cirkInner/2 * np.sin(self.theta) #x,y are coordinates for the inner cirkle
         self.zInner = np.zeros(int(self.numberOfTeeth))
         self.pointsInner = [self.xInner, self.yInner, self.zInner]
-        #self.pointsInner = [value*self.multiplyingFactor for value in self.pointsInner] #Multiplies list by the sizing factor
+        self.pointsInner = [value*self.multiplyingFactor for value in self.pointsInner] #Multiplies list by the sizing factor
         self.pointsInner = np.array(self.pointsInner).T
     def generatingMainCircle(self):
         '''
@@ -62,7 +63,7 @@ class PointGenerator:
         self.xMain, self.yMain = self.cirkMain/2 * np.cos(self.theta), self.cirkMain/2 * np.sin(self.theta) #x,y are coordinates for the inner cirkle
         self.zMain = np.zeros(int(self.numberOfTeeth))
         self.pointsMain = [self.xMain, self.yMain, self.zMain]
-        #self.pointsMain = [value*self.multiplyingFactor for value in self.pointsMain] #Multiplies list by the sizing factor
+        self.pointsMain = [value*self.multiplyingFactor for value in self.pointsMain] #Multiplies list by the sizing factor
         self.pointsMain = np.array(self.pointsMain).T
 
     def generatingOuterCircle(self):
@@ -73,7 +74,7 @@ class PointGenerator:
         self.xOuter, self.yOuter = self.cirkOuter/2 * np.cos(self.thetaShifted), self.cirkOuter/2 * np.sin(self.thetaShifted) #x,y are coordinates for the inner cirkle
         self.zOuter = np.zeros(int(self.numberOfTeeth))
         self.pointsOuter = [self.xOuter, self.yOuter, self.zOuter]
-        #self.pointsOuter = [value*self.multiplyingFactor for value in self.pointsOuter] #Multiplies list by the sizing factor
+        self.pointsOuter = [value*self.multiplyingFactor for value in self.pointsOuter] #Multiplies list by the sizing factor
         self.pointsOuter = np.array(self.pointsOuter).T
 
     def offsetPoints(self):
@@ -85,21 +86,21 @@ class PointGenerator:
         self.yInnerOffset = self.yInner
         self.zInnerOffset = self.zInner + self.gearHeight
         self.pointsInnerOffset = [self.xInnerOffset, self.yInnerOffset, self.zInnerOffset]
-        #self.pointsInnerOffset = [value*self.multiplyingFactor for value in self.pointsInnerOffset] #Multiplies list by the sizing factor
+        self.pointsInnerOffset = [value*self.multiplyingFactor for value in self.pointsInnerOffset] #Multiplies list by the sizing factor
         self.pointsInnerOffset = np.array(self.pointsInnerOffset).T
 
         self.xMainOffset = self.xMain
         self.yMainOffset  = self.yMain
         self.zMainOffset  = self.zMain + self.gearHeight
         self.pointsMainOffset = [self.xMainOffset, self.yMainOffset, self.zMainOffset]
-        #self.pointsMainOffset = [value*self.multiplyingFactor for value in self.pointsMainOffset]
+        self.pointsMainOffset = [value*self.multiplyingFactor for value in self.pointsMainOffset]
         self.pointsMainOffset = np.array(self.pointsMainOffset).T
 
         self.xOuterOffset = self.xOuter
         self.yOuterOffset = self.yOuter
         self.zOuterOffset = self.zOuter + self.gearHeight
         self.pointsOuterOffset = [self.xOuterOffset, self.yOuterOffset, self.zOuterOffset]
-        #self.pointsOuterOffset = [value*self.multiplyingFactor for value in self.pointsOuterOffset] #Multiplies list by the sizing factor
+        self.pointsOuterOffset = [value*self.multiplyingFactor for value in self.pointsOuterOffset] #Multiplies list by the sizing factor
         self.pointsOuterOffset = np.array(self.pointsOuterOffset).T
 
     def temperatureSizing(self):
@@ -128,8 +129,6 @@ class PointGenerator:
         self.r = requests.get(self.endpoint, self.parameters, auth=(self.client_id,''))
         self.temp_json = self.r.json()
         self.temp_data = self.temp_json['data']
-        #self.meanTemp = self.temp_data[0]['observations'][0]['value']
-        #print(self.meanTemp)
         lenght = len(self.temp_data)
         allTemp = []
 
@@ -143,8 +142,14 @@ class PointGenerator:
         degDiff = self.printTemp - self.meanTemp
         sizeCoef = 0.11 # https://llplastic.co.uk/llplastic-information plastic expantion coefficient 0.11 mm/m/C
         self.prosChange = sizeCoef/1000* degDiff*100 #Prosent change after temperetur added
-        self.multiplyingFactor = 1 + self.prosChange
+        self.multiplyingFactor = 1 + self.prosChange/100
 
+        print('DegDiff')
+        print(degDiff)
+        print('prosChange')
+        print(self.prosChange)
+        print('Multiplying factor')
+        print(self.multiplyingFactor)
 
 
     def returnSizeChangeProsent(self):

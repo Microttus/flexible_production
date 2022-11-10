@@ -50,7 +50,6 @@ class GearGenerator:
         pointsInnerOffset = self.pg.getPointsInnerOffset()
         pointsMainOffset = self.pg.getPointsMainOffset()
         pointsOuterOffset =  self.pg.getPointsOuterOffset()
-
         self.mg.inputAndRun(pointsInner, pointsMain, pointsOuter, pointsInnerOffset, pointsMainOffset, pointsOuterOffset, self.spesificationList[1])
         self.mg.faceGenerator()
         self.mg.plotMesh()
