@@ -3,19 +3,24 @@ import numpy as np
 import numpy as np
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D, art3d
+import geargenerator as gg
+
 import pointgenerator as pg
 from stl import mesh
 
 class MeshGenerator:
-    def __init__(self, pointsInner, pointsMain, pointsOuter , pointsInnerOffset, pointsMainOffset, pointsOuterOffset):
+    def __init__(self, pointsInner, pointsMain, pointsOuter , pointsInnerOffset, pointsMainOffset, pointsOuterOffset, D):
         self.pointsInner = pointsInner
         self.pointsMain = pointsMain
         self.pointsOuter = pointsOuter
         self.pointsInnerOffset = pointsInnerOffset
         self.pointsMainOffset = pointsMainOffset
         self.pointsOuterOffset = pointsOuterOffset
+        self.D = D #Diameter of the gear
+        self.r =self.D/2 #radus of the gear
         self.faceGenerator()
         self.plotMesh()
+
 
     def faceGenerator(self):
         self.v = np.vstack((self.pointsInner, self.pointsMain, self.pointsOuter,self.pointsInnerOffset,self.pointsMainOffset, self.pointsOuterOffset))
@@ -53,6 +58,8 @@ class MeshGenerator:
             self.f.append(var12)
 
         self.f = np.vstack(self.f)
+
+
     def plotMesh(self):
 
         fig =plt.figure(figsize=(10,10))
@@ -63,8 +70,8 @@ class MeshGenerator:
         pc = art3d.Poly3DCollection(self.v[self.f],  edgecolor="black")
         ax.add_collection(pc)
         ax.auto_scale_xyz(scalex,scalex,scalex)
-        plt.xlim(-20,20)
-        plt.ylim(-20,20)
+        plt.xlim(-self.r,self.r)
+        plt.ylim(-self.r, self.r)
         plt.show()
 
 

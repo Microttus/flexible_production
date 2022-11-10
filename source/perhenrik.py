@@ -90,3 +90,21 @@ gear.save('gearPrint.stl')
 print(len(gear.vectors))
 
 '''
+
+''' 
+  #Plot the points just for fun
+        ax = plt.axes(projection='3d')
+        plt.plot(pointsInner[:, 0],pointsInner[:,1],pointsInner[:,2], '*')
+        plt.plot(pointsMain[:,0], pointsMain[:,1], pointsMain[:,2], '*')
+        plt.plot(pointsOuter[:,0], pointsOuter[:,1], pointsOuter[:,2], '*')
+
+        plt.plot(pointsInnerOffset[:, 0],pointsInnerOffset[:,1],pointsInnerOffset[:,2], '*')
+        plt.plot(pointsMainOffset[:, 0], pointsMainOffset[:,1], pointsMainOffset[:,2], '*')
+        plt.plot(pointsOuterOffset[:, 0], pointsOuterOffset[:,1], pointsOuterOffset[:,2], '*')
+        plt.show()
+
+        # Sett inn meshing her
+        # Torbjørn
+        #
+
+'''
