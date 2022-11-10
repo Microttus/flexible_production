@@ -11,9 +11,7 @@ Per Henrik Hardeberg
 # # Help with the mesh?
 # # Update class diagram because API is a function inside PointGeneratic
 # # Skriv inn grønn heder i alle funksjonene
-# # endre alle klassene til init osv.
-            #Mesh generator OK
-            #Pointgenerator
+
 
 
 
