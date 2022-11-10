@@ -57,10 +57,14 @@ class MeshGenerator:
 
         fig =plt.figure(figsize=(10,10))
         ax = fig.add_subplot(projection="3d")
-        scale = self.v.shape
+        scalex = self.v.shape
+        #scaley = scalex/5
+        #scalez = scalex/5
         pc = art3d.Poly3DCollection(self.v[self.f],  edgecolor="black")
         ax.add_collection(pc)
-        ax.auto_scale_xyz(scale,scale,scale)
+        ax.auto_scale_xyz(scalex,scalex,scalex)
+        plt.xlim(-20,20)
+        plt.ylim(-20,20)
         plt.show()
 
 
