@@ -1,12 +1,15 @@
-import numpy as np
+'''
+Gear Generator MAS417 Project
+Flexible Production
+Per Henrik Hardeberg
+10.11.2022
+'''
+
 
 import numpy as np
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D, art3d
-import geargenerator as gg
 
-import pointgenerator as pg
-from stl import mesh
 
 class MeshGenerator:
     def __init__(self, pointsInner, pointsMain, pointsOuter , pointsInnerOffset, pointsMainOffset, pointsOuterOffset, D):
@@ -23,6 +26,9 @@ class MeshGenerator:
 
 
     def faceGenerator(self):
+        '''
+        :return: Stacks all the points to array v, and creating the face array f.
+        '''
         self.v = np.vstack((self.pointsInner, self.pointsMain, self.pointsOuter,self.pointsInnerOffset,self.pointsMainOffset, self.pointsOuterOffset))
         self.f = []
         length = len(self.pointsInner)
@@ -59,10 +65,11 @@ class MeshGenerator:
 
         self.f = np.vstack(self.f)
 
+        return self.f, self.v
+
 
     def plotMesh(self):
         '''
-
         :return: Plots all the faces of v[f]. Visualize like the resultant STL
         '''
 
