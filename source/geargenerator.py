@@ -73,14 +73,16 @@ class GearGenerator:
         Fase for genrerating th epointcloud from the user data and preset parameters
         '''
         # Keyword if loop shal be used
-        action = True
+        action = self.uApi.fetchingTemperature()
 
         #Rertriving location mean temperature
-        self.uApi.fetchingTemperature()
-        # [innerDiameter, outerDiameter, teethheight,gearheight, nuberOfTeeth, printTemperature [C],  locationLat, locationLong]
-        self.pGen = pg.PointGenerator(self.spesificationList) #Her oprettes objektet, bytt til spesification list når den skal testes skikkelig.
-        self.temp = self.pGen.returnTemp()
-        # Per
+
+        if self.p_index == 0:
+            # [innerDiameter, outerDiameter, teethheight,gearheight, nuberOfTeeth, printTemperature [C],  locationLat, locationLong]
+            self.pGen = pg.PointGenerator(self.spesificationList) #Her oprettes objektet, bytt til spesification list når den skal testes skikkelig.
+            self.temp = self.pGen.returnTemp()
+            self.p_index = 1
+
         if action:
             self.next += 1
         return 0

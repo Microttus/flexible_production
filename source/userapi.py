@@ -72,12 +72,11 @@ class UserApi:
         self.myApi.message_display_center("Fetching temperature data and generating point cloud", 30, 600, 200, cl.black)
         self.myApi.message_display_center("Name of genrated file:", 30, 600, 300, cl.black)
 
-        self.myApi.text_box(460, 150, 370, 600, cl.dark_blue, cl.black, 30, 0)
-        self.myApi.text_box(460, 150, 370, 600, cl.dark_blue, cl.black, 30, 0)
+        self.myApi.text_box(550, 400, 100, 30, cl.dark_blue, cl.black, 30, 0)
 
         #self.myApi.img_show(520, 500, 2)
 
-        action = self.myApi.button('Next', 780, 630, 160, 80, cl.dark_white, cl.dark_blue, True)
+        action = self.myApi.button('Next', 520, 650, 160, 80, cl.dark_white, cl.dark_blue, True)
 
         self.myApi.update_screen()
 
