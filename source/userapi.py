@@ -12,8 +12,7 @@ import colors as cl
 
 class UserApi:
     def __init__(self):
-        # [innerDiameter, nuberOfTeeth, printTemperature, teethheight, locationLong, locationLat, locationTemp]
-        self.specificationList = [0, 0, 0, 0, 0, 0, 0, 0, 0]
+        self.specificationList = [0, 0, 0, 0, 0, 0, 0, 0]
         self._locationTemp = 20
         self._filepath = 'C:/dustepc/dustemappe'
         self.myApi = api.ApiLibrary()

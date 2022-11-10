@@ -2,6 +2,11 @@
 
 import numpy as np
 from stl import mesh
+import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D, art3d
+import pointgenerator as pg
+
+
 
 a = 0
 b = -5
@@ -62,7 +67,7 @@ for i, f in enumerate(faces):
         cube.vectors[i][j] = vertices[f[j],:]
 
 print(enumerate(faces))
-
+print(faces)
 # Write the mesh to file "cube.stl"
 cube.save('cube.stl')
 print(len(cube.vectors))
@@ -74,4 +79,3 @@ class testClass:
         listen = specList.getList()
         print(listen)
         return 0
-    

@@ -12,6 +12,11 @@ import key_board_input
 import colors as cl
 
 class ApiLibrary:
+    '''
+    A compleate libary for buliding windows with
+    GUI and self containg run management
+    '''
+
     def __init__(self):
         self.mode = 0
         pygame.init()
