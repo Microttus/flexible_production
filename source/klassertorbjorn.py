@@ -23,12 +23,13 @@ class nodes:
                 self.nodes.append([x, y])
 
         self.points = np.array(self.nodes)
-        print(self.points)
+
 
     def ploting(self):
         self.tri = Delaunay(self.points)
         plt.triplot(self.points[:,0], self.points[:,1], self.tri.simplices)
         plt.plot(self.points[:, 0], self.points[:, 1], 'o')
+        print(self.points[:,0])
         plt.show()
 
 

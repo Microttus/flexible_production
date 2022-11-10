@@ -1,0 +1,6 @@
+matplotlib==3.6.2
+numpy==1.23.4
+pygame==2.1.2
+requests==2.28.1
+scipy==1.9.3
+stl==0.0.3
