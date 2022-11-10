@@ -19,7 +19,7 @@ import pointgenerator as pg
 from stl import mesh
 
 
-dummyList = [0.1, 0.6, 0.05,  0.05,25, 200,8.3540, 58.2250]
+dummyList = [0.1, 1, 0.05,  0.05,25, 200,8.3540, 58.2250]
         # [innerDiameter, outerDiameter, teethheight,gearheight, nuberOfTeeth, printTemperature [C],  locationLat, locationLong]
 pGen = pg.PointGenerator(dummyList) #Her oprettes objektet, bytt til spesification list når den skal testes skikkelig.
 pointsInner = pGen.getPointsInner()
@@ -30,11 +30,9 @@ pointsMainOffset = pGen.getPointsMainOffset()
 pointsOuterOffset =  pGen.getPointsOuterOffset()
 
 #v = np.array([[0,0,0], [1,0,0], [1,1,0], [0,1,0],
- #             [0,0,1], [1,0,1], [1,1,1], [0,1,1]])
+   #          [0,0,1], [1,0,1], [1,1,1], [0,1,1]])
 
-#v = np.array([pointsInner, pointsMain])
-
-#f = np.array([[0,6,1], [1,2,3]])
+#f = np.array([[0,6,1]])
 
 
 
@@ -70,16 +68,16 @@ for i  in range(1, length):
     f.append(var12)
 
 
-
+f = np.vstack(f)   # To get the faces to mach the array expected and not array of array
 fig = plt.figure()
 ax = fig.add_subplot(projection="3d")
 pc = art3d.Poly3DCollection(v[f],  edgecolor="black")
 ax.add_collection(pc)
 plt.show()
 
-f = np.vstack(f)  # To get the faces to mach the array expected and not array of array
-print(f)
 
+
+'''
 gear = mesh.Mesh(np.zeros(f.shape[0], dtype=mesh.Mesh.dtype))
 for i, f in enumerate(f):
     for j in range(3):
@@ -88,6 +86,7 @@ for i, f in enumerate(f):
 print(enumerate(f))
 
  #Write the mesh to file "cube.stl"
-gear.save('gear.stl')
+gear.save('gearPrint.stl')
 print(len(gear.vectors))
 
+'''

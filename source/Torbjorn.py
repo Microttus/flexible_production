@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
-import klassertorbjorn
+import meshgenerator
 
 nd = klassertorbjorn.nodes()
 pg = klassertorbjorn.PointGenerator()

@@ -40,7 +40,7 @@ id_str = str(loc_id)
 parameters = {
     'sources': id_str,
     'elements': 'mean(air_temperature P1D)',
-    'referencetime': '2021-06-01/2021-08-01',
+    'referencetime': '2021-06-01/2022-06-01',
 }
 
 r = requests.get(endpoint, parameters, auth=(client_id,''))
