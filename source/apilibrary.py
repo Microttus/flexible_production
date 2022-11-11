@@ -196,7 +196,7 @@ class ApiLibrary:
             self.gearShow = pygame.image.load('Images/gearImg.png')
             self.gearShow = pygame.transform.scale(self.gearShow, (400, 450))
             self.s_ind = 1
-
+        print(self.s_ind)
         self.gameDisplay.blit(self.gearShow, (xpos, ypos))
 
     def returnLists(self):
@@ -209,3 +209,6 @@ class ApiLibrary:
             self._filename += '.stl'
 
         return self._filename
+
+    def resetSInd(self):
+        self.s_ind = 0

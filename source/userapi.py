@@ -117,6 +117,7 @@ class UserApi:
         self.myApi.update_screen()
 
         if action:
+            self.myApi.resetSInd()
             return True
 
         return False
