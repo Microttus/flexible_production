@@ -83,6 +83,8 @@ class UserApi:
 
         action = self.myApi.button('Next', 520, 680, 160, 80, cl.dark_white, cl.dark_blue, True)
 
+        self.myApi.message_display_center("Loading points, please wait until box is active", 15, 600, 350, cl.dark_red)
+
         self.myApi.update_screen()
 
         if action:
