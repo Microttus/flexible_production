@@ -56,13 +56,13 @@ class UserApi:
         self.myApi.update_screen()
 
         if action:
-            self.updateValues()
+            self._updateValues()
             return True
 
         return False
 
 
-    def updateValues(self):
+    def _updateValues(self):
         '''
         Used for update spesification list from the internal list in the API class
         '''

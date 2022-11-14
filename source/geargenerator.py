@@ -26,7 +26,7 @@ class GearGenerator:
 
     def inputFase(self):
         '''
-        Fase for reciving user input for wanted size of the gear
+        Phase for reciving user input for wanted size of the gear
         '''
         action = self.uApi.userInput()
         if action:
@@ -38,7 +38,7 @@ class GearGenerator:
 
     def meshFase(self):
         '''
-        Fase for creating a mesh from the reciving point cloud and save as .stl file
+        Phase for creating a mesh from the reciving point cloud and save as .stl file
         '''
         action = self.uApi.generatingPMS(self.temp)
         action = True
@@ -70,7 +70,7 @@ class GearGenerator:
 
     def pointFase(self):
         '''
-        Fase for genrerating th epointcloud from the user data and preset parameters
+        Phase for genrerating th epointcloud from the user data and preset parameters
         '''
         # Keyword if loop shal be used
         action = self.uApi.fetchingTemperature()

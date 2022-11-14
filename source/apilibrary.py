@@ -6,17 +6,17 @@ Martin Økter
 25.10.2022
 
 Referanse:
-This code was originaly inspired by a open source "Dodge Coin Game"
+This code was originaly inspired by a open source "Dodge Coin Game" downloaded Spring 2018.
+The game have since then become unavailabel and all code used beeneth is written and assambled in a new structure
+and is considered a total new code. Several iterations of the code have existed since the code had si,milaritiesd to this code.
+The Pygame libary are used as the user interference engin and similaities to other available code online may therfore exist
 '''
 
-#import key_board_input
+
 import pygame
 import key_board_input
 import colors as cl
 
-import matplotlib
-matplotlib.use("Agg")
-import matplotlib.backends.backend_agg as agg
 
 class ApiLibrary:
     '''
@@ -196,7 +196,6 @@ class ApiLibrary:
             self.gearShow = pygame.image.load('Images/gearImg.png')
             self.gearShow = pygame.transform.scale(self.gearShow, (400, 450))
             self.s_ind = 1
-        print(self.s_ind)
         self.gameDisplay.blit(self.gearShow, (xpos, ypos))
 
     def returnLists(self):
