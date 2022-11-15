@@ -1,4 +1,4 @@
-'''
+"""
 Gear Generator MAS417 Project
 Flexible Production
 ApiLibary
@@ -10,7 +10,7 @@ This code was originaly inspired by a open source "Dodge Coin Game" downloaded S
 The game have since then become unavailabel and all code used beeneth is written and assambled in a new structure
 and is considered a total new code. Several iterations of the code have existed since the code had si,milaritiesd to this code.
 The Pygame libary are used as the user interference engin and similaities to other available code online may therfore exist
-'''
+"""
 
 
 import pygame
@@ -19,10 +19,10 @@ import colors as cl
 
 
 class ApiLibrary:
-    '''
+    """
     A compleate libary for buliding windows with
     GUI and self containg run management
-    '''
+    """
 
     def __init__(self):
         self.mode = 0
@@ -53,6 +53,10 @@ class ApiLibrary:
 
 
     def update_screen(self):
+        """
+        Function used for refhreshing the site as well as keep track of maous butten clickes
+        and exit the game if cross is pressed.
+        """
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
@@ -67,10 +71,17 @@ class ApiLibrary:
         self.gameDisplay.fill(cl.white)
 
     def text_objects(self, text, font):
+        """
+        Privae function used for rendering a text object
+        """
         textSurface = font.render(text, True, cl.black)
         return textSurface, textSurface.get_rect()
 
     def message_display(self, text, size, x, y, color=(0, 0, 0)):
+        """
+        Create a common text box with the text parameteres
+        provided by the input
+        """
         largeText = pygame.font.SysFont('calibri', size)
         l_Text = largeText.render(str(text), 1, color)
         # TextSurf, TextRect = text_objects(text, l_Text)
@@ -78,6 +89,10 @@ class ApiLibrary:
         self.gameDisplay.blit(l_Text, TextRect)
 
     def message_display_center(self, text, size, x, y, color=(0, 0, 0)):
+        """
+        Create a common text box with the text parameteres
+        provided by the input. This variation centers the text
+        """
         largeText = pygame.font.SysFont('calibri', size)
         l_Text = largeText.render(str(text), 1, color)
         TextRect = l_Text.get_rect()
@@ -85,6 +100,9 @@ class ApiLibrary:
         self.gameDisplay.blit(l_Text, TextRect)
 
     def img_show(self, x, y, img_ind):
+        """
+        Show a image
+        """
         if img_ind == 1:
             self.gameDisplay.blit(self.gearDisc, (x, y))
         elif img_ind == 2:
@@ -92,6 +110,10 @@ class ApiLibrary:
         return 0
 
     def button(self, msg, x, y, width, height, inactive, active, action=None, non_action=None):
+        """
+        Create an intreactive button with a text
+        can return an action if clicked
+        """
         mouse = pygame.mouse.get_pos()
         if x + width > mouse[0] > x and y + height > mouse[1] > y:
             pygame.draw.rect(self.gameDisplay, active, (x, y, width, height))
@@ -107,6 +129,10 @@ class ApiLibrary:
         return non_action
 
     def text_box_float(self, x_place, y_place, width, height, active, inactive, size=30, text_index=0):
+        """
+        A function creating a box where the user can write an input
+        This version accet only an inu which ma be converted to a float.
+        """
         if len(self.text_for_print) < text_index+2:
             self.text_for_print.append([])
             self.specification.append(0)
@@ -154,7 +180,9 @@ class ApiLibrary:
         key_board_input.key_key(True)
 
     def text_box(self, x_place, y_place, width, height, active, inactive, size=30, text_index=0):
-
+        """
+        A function creating a box where the user can write an input
+        """
         pos = pygame.mouse.get_pos()
         pressed = pygame.mouse.get_pressed()
         action = False
@@ -192,6 +220,11 @@ class ApiLibrary:
         key_board_input.key_key(True)
 
     def show_plot(self, xpos, ypos):
+        """
+        Spesialized function used for showing an image of he generated plot
+        Saved in a known location by he mesh object.
+        """
+
         if self.s_ind == 0:
             self.gearShow = pygame.image.load('Images/gearImg.png')
             self.gearShow = pygame.transform.scale(self.gearShow, (400, 450))
@@ -199,9 +232,15 @@ class ApiLibrary:
         self.gameDisplay.blit(self.gearShow, (xpos, ypos))
 
     def returnLists(self):
+        """
+        eturn the spesification list
+        """
         return self.specification
 
     def returnName(self):
+        """
+        Return the filename input name
+        """
         if self._filename == '':
             self._filename = 'gear.stl'
         else:
@@ -210,4 +249,7 @@ class ApiLibrary:
         return self._filename
 
     def resetSInd(self):
+        """
+        Used to reset the s_ind value for reloading the gear picure
+        """
         self.s_ind = 0

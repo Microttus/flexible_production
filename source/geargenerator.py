@@ -7,7 +7,6 @@ Martin Økter, Per Henrik, Torbjørn
 '''
 import pointgenerator
 import userapi
-import pointgenerator as pg
 import meshgenerator
 
 

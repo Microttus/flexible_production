@@ -1,3 +1,15 @@
+###### GearGenerator 1.0 ######
+
+Authors:
+Torbjørn Halvorsen
+Per Henrik Hardeberg
+Martin Økter
+
+Instructions:
+For running the program, download all files and run in a python 3.4
+environment or newer. A list of nessesary packages can be found here:
+
+Nessesary Packages:
 matplotlib==3.6.2
 numpy==1.23.4
 pygame==2.1.2

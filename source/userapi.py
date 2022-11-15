@@ -6,7 +6,6 @@ Martin Økter
 25.10.2022
 
 Sources:
-https://stackoverflow.com/questions/48093361/using-matplotlib-in-pygame
 '''
 
 import apilibrary as api
