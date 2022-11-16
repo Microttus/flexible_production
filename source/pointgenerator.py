@@ -3,6 +3,9 @@ Gear Generator MAS417 Project
 Flexible Production
 Per Henrik Hardeberg
 27.10.2022
+
+source: https://gis.stackexchange.com/questions/411113/generate-a-circle-of-coordinates-around-a-point-but-im-getting-an-oval
+is used to get inspiration on how to make the circle patterned points.
 '''
 
 import numpy as np
