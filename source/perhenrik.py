@@ -12,7 +12,7 @@ Per Henrik Hardeberg
 import pointgenerator
 import meshgenerator
 
-spesificationList = [10, 40, 5,  5, 20, 200, 8.3540, 58.2250]
+spesificationList = [15, 60, 5, 10, 25, 210, 8.3540, 58.2250]
 pg = pointgenerator.PointGenerator()
 mg = meshgenerator.MeshGenerator()
 pg.inputList(spesificationList)
