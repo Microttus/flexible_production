@@ -29,11 +29,12 @@ s = requests.get(geoendpoint, geoparameters, auth=(client_id, ''))
 # Extract JSON data
 geo_json = s.json()
 
+
 loc_data = geo_json['data']
 loc_id = loc_data[0]['id']
 print(loc_data[0]['id'])
 print(loc_data[0]['name'])
-#print(loc_data) #To see whats inside
+#print(geo_json) #To see whats inside
 
 id_str = str(loc_id)
 
@@ -45,7 +46,7 @@ parameters = {
 
 r = requests.get(endpoint, parameters, auth=(client_id,''))
 temp_json = r.json()
-#print(temp_json)
+print(temp_json)
 if r.status_code == 200:
     temp_data = temp_json['data']
     #print(temp_data)
