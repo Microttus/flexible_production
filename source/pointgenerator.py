@@ -3,6 +3,9 @@ Gear Generator MAS417 Project
 Flexible Production
 Per Henrik Hardeberg
 27.10.2022
+
+source: https://gis.stackexchange.com/questions/411113/generate-a-circle-of-coordinates-around-a-point-but-im-getting-an-oval
+is used to get inspiration on how to make the circle patterned points.
 '''
 
 import numpy as np
@@ -21,6 +24,13 @@ class PointGenerator:
         self.meanTemp = 0
         self.Lat = 0
         self.Long = 0
+
+        self.pointsInner = []
+        self.pointsOuter = []
+        self.pointsMain = []
+        self.pointsInnerOffset = []
+        self.pointsOuterOffset = []
+        self.pointsMainOffset = []
 
     def inputList(self, list):
         '''
@@ -67,7 +77,26 @@ class PointGenerator:
         self.pointsMain = np.array(self.pointsMain).T
 
     def generatingOuterCircle(self):
-        '''
+        '''###### GearGenerator 1.0 ######
+
+Authors:
+Torbjørn Halvorsen
+Per Henrik Hardeberg
+Martin Økter
+
+Instructions:
+For running the program, download all files and run in a python 3.4
+environment or newer. A list of nessesary packages can be found here:
+
+Nessesary Packages:
+matplotlib==3.6.2
+numpy==1.23.4
+pygame==2.1.2
+requests==2.28.1
+scipy==1.9.3
+stl==0.0.3
+numpy.stl== 2.17.1
+
         :return: Generates the points of the outer lower circle
         '''
         # make a simple unit circle shiftet one halv tooth
