@@ -29,7 +29,6 @@ s = requests.get(geoendpoint, geoparameters, auth=(client_id, ''))
 # Extract JSON data
 geo_json = s.json()
 
-
 loc_data = geo_json['data']
 loc_id = loc_data[0]['id']
 print(loc_data[0]['id'])
