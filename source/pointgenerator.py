@@ -25,6 +25,13 @@ class PointGenerator:
         self.Lat = 0
         self.Long = 0
 
+        self.pointsInner = []
+        self.pointsOuter = []
+        self.pointsMain = []
+        self.pointsInnerOffset = []
+        self.pointsOuterOffset = []
+        self.pointsMainOffset = []
+
     def inputList(self, list):
         '''
         :param list: List with all the inputs from the user interface
@@ -70,7 +77,26 @@ class PointGenerator:
         self.pointsMain = np.array(self.pointsMain).T
 
     def generatingOuterCircle(self):
-        '''
+        '''###### GearGenerator 1.0 ######
+
+Authors:
+Torbjørn Halvorsen
+Per Henrik Hardeberg
+Martin Økter
+
+Instructions:
+For running the program, download all files and run in a python 3.4
+environment or newer. A list of nessesary packages can be found here:
+
+Nessesary Packages:
+matplotlib==3.6.2
+numpy==1.23.4
+pygame==2.1.2
+requests==2.28.1
+scipy==1.9.3
+stl==0.0.3
+numpy.stl== 2.17.1
+
         :return: Generates the points of the outer lower circle
         '''
         # make a simple unit circle shiftet one halv tooth

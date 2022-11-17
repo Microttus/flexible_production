@@ -16,6 +16,11 @@ class GearGenerator:
         self.spesificationList = [10, 40, 2,  2, 20, 200, 8.3540, 58.2250]
         self.temp = 0
         self.pointsInner = []
+        self.pointsMain = []
+        self.pointsOuter = []
+        self.pointsInnerOffset = []
+        self.pointsMainOffset = []
+        self.pointsOuterOffset = []
         self.p_index = 0
         self._filename = ''
 
