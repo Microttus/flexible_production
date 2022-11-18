@@ -13,7 +13,6 @@ import colors as cl
 import os
 
 
-
 class UserApi:
     def __init__(self):
         self.specificationList = [0, 0, 0, 0, 0, 0, 0, 0]

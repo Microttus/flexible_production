@@ -1,4 +1,14 @@
-#Martin Økter
+"""
+Martin Økter
+Pygame Keyboard Interper
+
+Version: 3.0
+Dato of last revicion: 18.11.2022
+
+Github: Microttus
+
+UiA
+"""
 import pygame
 
 pygame.init()
