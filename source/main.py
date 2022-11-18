@@ -1,7 +1,7 @@
 '''
 Gear Generator MAS417 Project
 Flexible Production
-Martin Økter, Per Henrik Marie Hardberg, Totbjørn Halvorsen
+Martin Økter, Per Henrik Marie Hardberg, Torbjørn Halvorsen
 25.10.2022
 '''
 

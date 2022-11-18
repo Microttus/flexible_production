@@ -138,6 +138,11 @@ numpy.stl== 2.17.1
         words: If the gear is printed in high temperature and needs to be used in cold environment, the STL of the gear needs to be bigger
         than the given size to shrink and fit for the environment. From the given long and lat the location is found and used to calculate the factor.
         '''
+
+        '''Referanse:
+                This code was originaly inspired by Frosts wather API example code, which is used to gather weather data and used in the sizing of the gears.
+                https://frost.met.no/python_example.html
+                '''
         # Insert your own client ID here
         self.client_id = 'd5398c91-5891-4c26-b199-990eebd37174'
         self.endpoint = 'https://frost.met.no/observations/v0.jsonld'
@@ -149,7 +154,6 @@ numpy.stl== 2.17.1
         self.geo_json = self.s.json()
 
         self.geo_json = self.s.json()
-        self.loc_data = self.geo_json['data']
         self.loc_data = self.geo_json['data']
         self.loc_id = self.loc_data[0]['id']
         self.name = self.loc_data[0]['name']
